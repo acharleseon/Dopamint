@@ -1,0 +1,20 @@
+/* ScrambledText wrapper — inline so it inherits all heading typography */
+.text-block {
+  display: inline;
+}
+
+/* Word wrapper — white-space:nowrap prevents mid-word line breaks.
+   SplitText adds this class via wordsClass:'word' */
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Char — width is hard-locked via JS at mount; textAlign:center keeps the
+   scramble char centred inside that fixed-width box. will-change:contents
+   tells the browser to layer-promote based on text content changes, not
+   geometry — avoiding composite layer thrash on neighbouring elements. */
+.char {
+  display: inline-block;
+  will-change: contents;
+}

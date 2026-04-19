@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dopamint - Real-time infrastructure for physical AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#484454",
+                    "on-error": "#690005",
+                    "on-surface": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "surface-variant": "#353535",
+                    "surface-container-highest": "#353535",
+                    "on-background": "#e2e2e2",
+                    "on-primary-fixed": "#1e0060",
+                    "surface-tint": "#ccbeff",
+                    "secondary-fixed": "#6ffcb9",
+                    "on-tertiary-fixed": "#1b1c14",
+                    "on-tertiary-fixed-variant": "#47473e",
+                    "tertiary-container": "#919186",
+                    "surface": "#131313",
+                    "on-primary": "#350097",
+                    "tertiary-fixed": "#e4e3d6",
+                    "on-secondary-fixed-variant": "#005234",
+                    "secondary-container": "#00b479",
+                    "primary-container": "#977bff",
+                    "on-secondary-fixed": "#002113",
+                    "primary-fixed-dim": "#ccbeff",
+                    "inverse-on-surface": "#303030",
+                    "surface-container": "#1f1f1f",
+                    "primary": "#ccbeff",
+                    "primary-fixed": "#e7deff",
+                    "secondary": "#4edf9f",
+                    "tertiary-fixed-dim": "#c8c7bb",
+                    "on-secondary": "#003823",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary": "#303128",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-dim": "#131313",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#4c1bc2",
+                    "surface-bright": "#393939",
+                    "background": "#131313",
+                    "on-tertiary-container": "#292a22",
+                    "outline": "#938ea0",
+                    "on-secondary-container": "#003e27",
+                    "inverse-primary": "#653eda",
+                    "on-primary-container": "#2e0085",
+                    "tertiary": "#e7e6d9",
+                    "surface-container-low": "#1b1b1b",
+                    "on-surface-variant": "#cac3d7",
+                    "secondary-fixed-dim": "#4edf9f",
+                    "inverse-surface": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Urbanist",
+                            "Inter"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Space Grotesk"
+                    ]
+            },
+            backgroundImage: {
+              'dot-pattern': 'radial-gradient(circle, #484454 1px, transparent 1px)',
+            },
+            backgroundSize: {
+              'dot-pattern': '24px 24px',
+            }
+        },
+        },
+      }
+    </script>
+<style>
+      .bg-dot-pattern {
+        background-image: radial-gradient(circle, #484454 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased selection:bg-primary selection:text-on-primary relative">
+<div class="fixed inset-0 z-[-1] pointer-events-none bg-dot-pattern opacity-30"></div>
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-[100] bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<a class="text-xl font-black tracking-widest text-zinc-100 hover:text-zinc-200 transition-colors" href="#">DOPAMINT</a>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-[#815EF8] border-b border-[#815EF8] pb-1 hover:bg-zinc-900/50 hover:scale-95 duration-75 transition-all" href="#">RUNTIME</a>
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-zinc-500 hover:text-zinc-200 transition-colors hover:bg-zinc-900/50 hover:scale-95 duration-75" href="#">PROTOCOL</a>
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-zinc-500 hover:text-zinc-200 transition-colors hover:bg-zinc-900/50 hover:scale-95 duration-75" href="#">VOICE</a>
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-zinc-500 hover:text-zinc-200 transition-colors hover:bg-zinc-900/50 hover:scale-95 duration-75" href="#">DEVELOPERS</a>
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-zinc-500 hover:text-zinc-200 transition-colors hover:bg-zinc-900/50 hover:scale-95 duration-75" href="#">PRICING</a>
+<a class="font-['Inter'] tracking-tighter uppercase text-xs text-zinc-500 hover:text-zinc-200 transition-colors hover:bg-zinc-900/50 hover:scale-95 duration-75" href="#">TESTNET</a>
+</div>
+</div>
+<button class="px-4 py-2 bg-[#815EF8] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#6a4ad4] transition-colors rounded-DEFAULT border border-[#815EF8]">CONNECT</button>
+</nav>
+<main class="pt-32 pb-24 relative">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center pt-20 pb-32 relative">
+<div class="w-full md:w-2/3 relative z-10">
+<span class="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">hub</span> POWERED BY $DOPE</span>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] mb-8 max-w-4xl font-headline">
+                Real-time infrastructure<br/>for physical AI.
+            </h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl font-light tracking-wide mb-12">
+                Dopamint powers emotionally intelligent companion products, giving physical and virtual agents persistent memory, stable identity, and sub-second voice interactions.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 mb-16">
+<button class="px-8 py-4 bg-primary text-on-primary font-bold uppercase tracking-wider text-sm rounded-DEFAULT hover:bg-primary-fixed transition-colors border border-primary">Start building</button>
+<button class="px-8 py-4 bg-surface-container text-on-surface font-bold uppercase tracking-wider text-sm border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors">Build with Core</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-outline-variant py-8 w-full font-mono text-sm text-on-surface-variant">
+<div><span class="block text-xs uppercase tracking-widest text-zinc-500 mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">speed</span> LATENCY</span>&lt; 180 MS</div>
+<div><span class="block text-xs uppercase tracking-widest text-zinc-500 mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span> UPTIME</span>99.99%</div>
+<div><span class="block text-xs uppercase tracking-widest text-zinc-500 mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">memory</span> SESSIONS</span>PERSISTENT</div>
+<div><span class="block text-xs uppercase tracking-widest text-zinc-500 mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">device_hub</span> RUNTIME/PHYSICAL</span>∞/∞</div>
+</div>
+</div>
+<div class="w-full md:w-1/3 hidden md:flex justify-end opacity-60">
+<img alt="Abstract technical line art" class="max-w-full h-auto mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzvJOxWwEZ1yEsfzVNaO8VQR_Ma7W6x08OaSdqHeObenwZdZHHsqbHLoQOBerW3gYF421052RmCy5T0rPhpXiXOWs9dNCmw0bogb9OSdi7usVwPgLYMwIl--ExJvAQqZwtPX9uGxvUZwbkCvZXLj-aXOHL82tYytZQ0k8hun8UzSbUNhoN5EHUAQde_Qxx2u9Dt6Sslj_MDwYXqERfS1CbWKL9lGXXngS3cQn4rriQB7lY2BSMnpxAjxKp_VZfYX-xO3kY79YHrDk"/>
+</div>
+</section>
+<!-- Ticker -->
+<div class="w-full bg-primary/10 text-primary py-4 overflow-hidden flex mb-32 border-y border-primary/30 font-mono text-sm font-bold uppercase tracking-widest whitespace-nowrap backdrop-blur-sm">
+<div class="animate-[marquee_20s_linear_infinite] flex items-center gap-12 px-6">
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">speed</span> Low Latency</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">memory</span> On-Chain Memory</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">graphic_eq</span> Voice Native</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">schema</span> Multimodal</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">factory</span> Production Ready</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">speed</span> Low Latency</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">memory</span> On-Chain Memory</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">graphic_eq</span> Voice Native</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">schema</span> Multimodal</span><span>•</span>
+<span><span class="material-symbols-outlined text-[16px] inline-block align-text-bottom mr-1">factory</span> Production Ready</span>
+</div>
+</div>
+<!-- Features Section (§ 02) -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 relative">
+<div class="absolute -right-20 top-0 opacity-20 pointer-events-none hidden lg:block">
+<img alt="Decorative lines" class="w-64 h-64 object-cover mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnVGbhgVYi0B8p47fAJtME1aX-Ew0pkNsV1Bfnah-a6fmK65ATS-lIdRCzMQHJ4hFHAvuaDo75dhiCuhmVPQLGwyOgIix3oNRJDb9mcowx6UJDNg11MqNlP9c7_VGTOH7FzfjldKt43kLYXpM1vG7noKINqbc4fOnGIGe8xULoW-u2SfiggvynCQCX5GdO7mwGby7pdU8ZTQHGgtE83Tg2WHpNef267nYlpg0O3xv0CWryBErS92RVreUnliWc5WjnhGngFwRSVIc"/>
+</div>
+<div class="flex items-center gap-4 mb-8">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">dataset</span> § 02 — WHY DOPAMINT</span>
+</div>
+<h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-16 font-headline relative inline-block">Built for relationships, not requests.
+        <div class="absolute -bottom-4 left-0 w-1/3 h-px bg-primary/50"></div>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+<div class="p-8 border border-outline-variant bg-surface-container-lowest/50 backdrop-blur-sm rounded-lg relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">psychology</span>
+</div>
+<div class="text-xs font-mono text-zinc-500 mb-4 flex items-center justify-between border-b border-outline-variant/50 pb-2">01 <span class="material-symbols-outlined text-[14px]">link</span></div>
+<h3 class="text-xl font-bold mb-4">AI amnesia is solved.</h3>
+<p class="text-sm text-on-surface-variant">No more repetitive context setting. Agents remember past interactions indefinitely.</p>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container-lowest/50 backdrop-blur-sm rounded-lg relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">favorite</span>
+</div>
+<div class="text-xs font-mono text-zinc-500 mb-4 flex items-center justify-between border-b border-outline-variant/50 pb-2">02 <span class="material-symbols-outlined text-[14px]">link</span></div>
+<h3 class="text-xl font-bold mb-4">Forgetful companions fail.</h3>
+<p class="text-sm text-on-surface-variant">Emotional connection requires continuity. We provide the substrate for long-term bonds.</p>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container-lowest/50 backdrop-blur-sm rounded-lg relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">stacked_line_chart</span>
+</div>
+<div class="text-xs font-mono text-zinc-500 mb-4 flex items-center justify-between border-b border-outline-variant/50 pb-2">03 <span class="material-symbols-outlined text-[14px]">link</span></div>
+<h3 class="text-xl font-bold mb-4">Compounding memory.</h3>
+<p class="text-sm text-on-surface-variant">Interactions build value over time. Each conversation enriches the agent's understanding.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant pt-16 relative">
+<div class="absolute top-0 left-1/2 w-px h-16 bg-outline-variant hidden md:block"></div>
+<div>
+<h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">extension</span> Capabilities</h3>
+<ul class="space-y-4 font-mono text-sm text-on-surface-variant">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm border border-secondary rounded-full p-0.5">check</span> Persistent memory</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm border border-secondary rounded-full p-0.5">check</span> Stable identity</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm border border-secondary rounded-full p-0.5">check</span> Unified output</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm border border-secondary rounded-full p-0.5">check</span> Not a model. A runtime.</li>
+</ul>
+</div>
+<div class="relative">
+<div class="absolute -left-4 top-4 w-1 h-full bg-primary/20 hidden md:block"></div>
+<p class="text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-8">
+                        Dopamint is the infrastructure layer connecting state-of-the-art models to the physical world, ensuring latency, memory, and safety guarantees required for real-world deployment.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Pipeline Section -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 relative">
+<div class="flex items-center gap-4 mb-16 border-b border-outline-variant pb-4 relative">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">account_tree</span> RUNTIME ARCHITECTURE / PIPELINE</span>
+<div class="absolute right-0 bottom-0 w-16 h-px bg-primary"></div>
+</div>
+<div class="flex flex-wrap items-center gap-4 font-mono text-sm text-on-surface-variant mb-12 justify-center p-6 bg-surface-container-lowest/50 backdrop-blur-sm border border-outline-variant rounded-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_49px,#484454_50px,transparent_51px)] bg-[length:100px_100%] opacity-10"></div>
+<span class="relative z-10 flex items-center gap-2 border border-outline-variant px-3 py-1 rounded bg-surface"><span class="material-symbols-outlined text-[14px]">mic</span> User voice</span> <span class="material-symbols-outlined text-primary relative z-10">arrow_forward</span>
+<span class="relative z-10 flex items-center gap-2 border border-outline-variant px-3 py-1 rounded bg-surface"><span class="material-symbols-outlined text-[14px]">psychology</span> Interpretation</span> <span class="material-symbols-outlined text-primary relative z-10">arrow_forward</span>
+<span class="relative z-10 flex items-center gap-2 border border-outline-variant px-3 py-1 rounded bg-surface"><span class="material-symbols-outlined text-[14px]">fingerprint</span> Identity</span> <span class="material-symbols-outlined text-primary relative z-10">arrow_forward</span>
+<span class="relative z-10 flex items-center gap-2 border border-outline-variant px-3 py-1 rounded bg-surface"><span class="material-symbols-outlined text-[14px]">output</span> Output</span> <span class="material-symbols-outlined text-primary relative z-10">arrow_forward</span>
+<span class="relative z-10 flex items-center gap-2 border border-outline-variant px-3 py-1 rounded bg-surface"><span class="material-symbols-outlined text-[14px]">settings_suggest</span> Adaptation</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-0 border border-outline-variant rounded-lg overflow-hidden bg-surface-container-lowest/30 backdrop-blur-sm">
+<div class="p-6 border-b md:border-b-0 md:border-r border-outline-variant hover:bg-surface-container-low transition-colors group">
+<div class="text-xs font-mono text-on-surface-variant mb-4 flex justify-between items-center">01 <span class="material-symbols-outlined text-[16px] opacity-50 group-hover:opacity-100 transition-opacity">record_voice_over</span></div>
+<h4 class="text-lg font-bold mb-2">Turn detection</h4>
+</div>
+<div class="p-6 border-b md:border-b-0 md:border-r border-outline-variant hover:bg-surface-container-low transition-colors group">
+<div class="text-xs font-mono text-on-surface-variant mb-4 flex justify-between items-center">02 <span class="material-symbols-outlined text-[16px] opacity-50 group-hover:opacity-100 transition-opacity">security</span></div>
+<h4 class="text-lg font-bold mb-2">Safety layer</h4>
+</div>
+<div class="p-6 border-b md:border-b-0 md:border-r border-outline-variant hover:bg-surface-container-low transition-colors group relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="text-xs font-mono text-primary mb-4 relative z-10 flex justify-between items-center">03 <span class="material-symbols-outlined text-[16px]">database</span></div>
+<h4 class="text-lg font-bold mb-2 text-primary relative z-10">Memory retrieval</h4>
+</div>
+<div class="p-6 border-b md:border-b-0 md:border-r border-outline-variant hover:bg-surface-container-low transition-colors group">
+<div class="text-xs font-mono text-on-surface-variant mb-4 flex justify-between items-center">04 <span class="material-symbols-outlined text-[16px] opacity-50 group-hover:opacity-100 transition-opacity">badge</span></div>
+<h4 class="text-lg font-bold mb-2">Identity layer</h4>
+</div>
+<div class="p-6 hover:bg-surface-container-low transition-colors group">
+<div class="text-xs font-mono text-on-surface-variant mb-4 flex justify-between items-center">05 <span class="material-symbols-outlined text-[16px] opacity-50 group-hover:opacity-100 transition-opacity">stream</span></div>
+<h4 class="text-lg font-bold mb-2">Voice &amp; avatar stream</h4>
+</div>
+</div>
+</section>
+<!-- Ecosystem Section (§ 03) -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant rounded-lg p-8 md:p-16 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="flex items-center gap-4 mb-8 relative z-10">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">device_hub</span> § 03 — ECOSYSTEM</span>
+</div>
+<h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-16 font-headline relative z-10">Two products. One runtime underneath.</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+<div class="border border-outline-variant/50 p-8 rounded-lg bg-surface/50">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl font-light">smart_toy</span>
+<h3 class="text-2xl font-bold text-primary">PRODUCT 01: DOPEkin</h3>
+</div>
+<p class="text-sm text-zinc-500 mb-6 font-mono uppercase border-b border-outline-variant/30 pb-2">AI Companion Platform</p>
+<ul class="space-y-4 font-mono text-sm text-on-surface-variant mb-8">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5 border border-primary/50 rounded-full p-0.5">deployed_code</span> Deploy custom companions rapidly</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5 border border-primary/50 rounded-full p-0.5">deployed_code</span> Pre-built emotional intelligence layers</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5 border border-primary/50 rounded-full p-0.5">deployed_code</span> Out-of-the-box multi-platform support</li>
+</ul>
+<button class="px-6 py-3 bg-primary/10 text-primary font-bold uppercase tracking-wider text-xs border border-primary rounded-DEFAULT hover:bg-primary/20 transition-colors">Explore DOPEkin</button>
+</div>
+<div class="border border-outline-variant/50 p-8 rounded-lg bg-surface/50">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary text-3xl font-light">currency_exchange</span>
+<h3 class="text-2xl font-bold text-secondary">PRODUCT 02: DOPEtwin</h3>
+</div>
+<p class="text-sm text-zinc-500 mb-6 font-mono uppercase border-b border-outline-variant/30 pb-2">Creator Monetization Layer</p>
+<ul class="space-y-4 font-mono text-sm text-on-surface-variant mb-8">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-0.5 border border-secondary/50 rounded-full p-0.5">deployed_code</span> Mint digital replicas of creator IP</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-0.5 border border-secondary/50 rounded-full p-0.5">deployed_code</span> Revenue sharing smart contracts</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-0.5 border border-secondary/50 rounded-full p-0.5">deployed_code</span> Authenticity attestation</li>
+</ul>
+<button class="px-6 py-3 bg-secondary/10 text-secondary font-bold uppercase tracking-wider text-xs border border-secondary rounded-DEFAULT hover:bg-secondary/20 transition-colors">Explore DOPEtwin</button>
+</div>
+</div>
+</section>
+<!-- Who This Is For (§ 04) -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 relative">
+<div class="flex items-center gap-4 mb-12 border-b border-outline-variant pb-4">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">group</span> § 04 — WHO THIS IS FOR</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 border border-outline-variant bg-surface-container-low/50 backdrop-blur-sm rounded-lg relative overflow-hidden group">
+<div class="absolute right-4 top-4 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">developer_board</span>
+</div>
+<h3 class="text-xl font-bold mb-6">Companion Product Teams</h3>
+<ul class="space-y-3 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Hardware integration</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Toy manufacturers</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Virtual pet developers</li>
+</ul>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container-low/50 backdrop-blur-sm rounded-lg relative overflow-hidden group">
+<div class="absolute right-4 top-4 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">video_camera_front</span>
+</div>
+<h3 class="text-xl font-bold mb-6">Creator Ecosystems</h3>
+<ul class="space-y-3 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Vtuber agencies</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Influencer networks</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> IP holders</li>
+</ul>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container-low/50 backdrop-blur-sm rounded-lg relative overflow-hidden group">
+<div class="absolute right-4 top-4 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<h3 class="text-xl font-bold mb-6">Consumer Platforms</h3>
+<ul class="space-y-3 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Social networks</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Gaming studios</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Customer service</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Developer Section (§ 06) -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative">
+<div>
+<div class="flex items-center gap-4 mb-6">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">code</span> § 06 — DEVELOPERS</span>
+</div>
+<h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-8 font-headline">Built for shipping,<br/>not experimenting.</h2>
+<div class="grid grid-cols-2 gap-4 font-mono text-xs text-on-surface-variant">
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">api</span> APIs</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">integration_instructions</span> SDKs</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">stream</span> Event Streams</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">memory</span> Memory Controls</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">security</span> Safety Layer</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">route</span> Model Routing</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">rocket_launch</span> Deployment Controls</div>
+<div class="p-3 border border-outline-variant rounded bg-surface-container-lowest/50 backdrop-blur-sm flex items-center gap-2 hover:border-primary/50 transition-colors"><span class="material-symbols-outlined text-[14px]">fingerprint</span> Identity API</div>
+</div>
+</div>
+<div class="bg-[#0e0e0e]/90 backdrop-blur-md border border-outline-variant rounded-lg p-6 font-mono text-sm shadow-2xl relative">
+<div class="absolute -right-4 -top-4 w-20 h-20 border-t border-r border-primary/30 rounded-tr-lg opacity-50 pointer-events-none"></div>
+<div class="absolute -left-4 -bottom-4 w-20 h-20 border-b border-l border-primary/30 rounded-bl-lg opacity-50 pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-8 bg-surface-container-high/80 border-b border-outline-variant flex items-center px-4 gap-2 rounded-t-lg">
+<div class="w-3 h-3 rounded-full bg-error border border-error-container"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary-container border border-tertiary-fixed"></div>
+<div class="w-3 h-3 rounded-full bg-secondary border border-secondary-container"></div>
+<span class="ml-4 text-[10px] text-zinc-500 uppercase tracking-widest">dopamint-core.py</span>
+</div>
+<pre class="pt-8 text-zinc-300 overflow-x-auto relative z-10"><code><span class="text-primary-container">import</span> dopamint <span class="text-primary-container">as</span> dp
+
+<span class="text-zinc-500"># Initialize connection to physical agent</span>
+agent = dp.Agent(id=<span class="text-secondary">"unit-07"</span>, secure=<span class="text-primary-container">True</span>)
+
+<span class="text-zinc-500"># Subscribe to multi-modal sensory stream</span>
+@agent.on_perception
+<span class="text-primary-container">def</span> <span class="text-tertiary-fixed">handle_scene</span>(scene: dp.SceneState):
+    <span class="text-primary-container">if</span> scene.detect_anomaly():
+        agent.halt()
+        <span class="text-primary-container">return</span> dp.Action.EMERGENCY_STOP
+        
+    <span class="text-zinc-500"># Generate continuous control trajectory</span>
+    trajectory = dp.planner.calculate(scene)
+    agent.execute(trajectory)</code></pre>
+</div>
+</section>
+<!-- Pricing (§ 07) -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 mb-32 relative">
+<div class="flex items-center gap-4 mb-16 border-b border-outline-variant pb-4">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">payments</span> § 07 — PRICING</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 border border-outline-variant bg-surface-container-lowest/50 backdrop-blur-sm rounded-lg flex flex-col relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-4xl">build</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Starter</h3>
+<p class="text-sm text-zinc-500 mb-8 font-mono border-b border-outline-variant/30 pb-2">Build</p>
+<ul class="space-y-4 mb-12 flex-1 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> 10k monthly interactions</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> Standard latency</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> Community support</li>
+</ul>
+<button class="w-full px-6 py-3 bg-surface-container text-on-surface font-bold uppercase tracking-wider text-xs border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors">Get Started</button>
+</div>
+<div class="p-8 border-2 border-primary bg-surface-container-low/80 backdrop-blur-md rounded-lg flex flex-col relative shadow-[0_0_30px_-5px_rgba(204,190,255,0.15)]">
+<div class="absolute top-0 right-0 bg-primary text-on-primary text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-bl-lg border-b border-l border-primary">Most Popular</div>
+<div class="absolute top-4 right-4 opacity-10">
+<span class="material-symbols-outlined text-4xl text-primary">rocket_launch</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Production</h3>
+<p class="text-sm text-primary mb-8 font-mono border-b border-primary/30 pb-2">Scale</p>
+<ul class="space-y-4 mb-12 flex-1 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Unlimited interactions</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Sub-180ms latency</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Priority support</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span> Custom identity models</li>
+</ul>
+<button class="w-full px-6 py-3 bg-primary text-on-primary font-bold uppercase tracking-wider text-xs rounded-DEFAULT hover:bg-primary-fixed transition-colors border border-primary">Start Scaling</button>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container-lowest/50 backdrop-blur-sm rounded-lg flex flex-col relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-4xl">domain</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+<p class="text-sm text-zinc-500 mb-8 font-mono border-b border-outline-variant/30 pb-2">Dedicated</p>
+<ul class="space-y-4 mb-12 flex-1 text-sm text-on-surface-variant font-mono">
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> Dedicated infrastructure</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> SLA guarantees</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> White-glove integration</li>
+<li class="flex items-center gap-2"><span class="w-1 h-1 bg-outline-variant rounded-full"></span> On-premise deployment options</li>
+</ul>
+<button class="w-full px-6 py-3 bg-surface-container text-on-surface font-bold uppercase tracking-wider text-xs border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors">Contact Sales</button>
+</div>
+</div>
+</section>
+<!-- CTA Section (TESTNET / § 08) -->
+<section class="max-w-4xl mx-auto px-6 text-center py-24 border-t border-outline-variant relative">
+<div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="flex items-center justify-center gap-4 mb-8">
+<span class="text-xs uppercase tracking-[0.2em] text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">terminal</span> § 08 — END OF SPEC</span>
+</div>
+<h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-8 font-headline">Get in before it opens.</h2>
+<div class="flex justify-center gap-8 mb-12 text-sm font-mono text-zinc-400">
+<span class="flex items-center gap-1 border border-outline-variant px-2 py-1 rounded"><span class="material-symbols-outlined text-[14px]">lock_open</span> Early access</span>
+<span class="flex items-center gap-1 border border-outline-variant px-2 py-1 rounded"><span class="material-symbols-outlined text-[14px]">visibility</span> Priority visibility</span>
+<span class="flex items-center gap-1 border border-outline-variant px-2 py-1 rounded"><span class="material-symbols-outlined text-[14px]">military_tech</span> Ecosystem rewards</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-center max-w-lg mx-auto gap-4">
+<input class="w-full bg-surface-container/50 backdrop-blur-sm border border-outline-variant px-6 py-4 rounded-DEFAULT text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-mono text-sm" placeholder="Enter your email" type="email"/>
+<button class="px-8 py-4 bg-primary text-on-primary font-bold uppercase tracking-wider text-sm rounded-DEFAULT hover:bg-primary-fixed transition-colors whitespace-nowrap border border-primary">Join the waitlist</button>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-8 bg-zinc-950/80 backdrop-blur-md border-t border-zinc-900">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8 opacity-60">
+<div class="text-zinc-100 font-bold mb-4 md:mb-0 flex items-center gap-4">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">hub</span> DOPAMINT</span>
+<span class="text-[10px] text-zinc-500 border border-zinc-700 px-2 py-0.5 rounded uppercase tracking-widest flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">bolt</span> POWERED BY $DOPE</span>
+</div>
+<div class="flex items-center gap-6 mb-4 md:mb-0 font-['Inter'] text-[10px] tracking-[0.2em] uppercase">
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">code</span> RUNTIME</a>
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">swap_horiz</span> PROTOCOL</a>
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">graphic_eq</span> VOICE</a>
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">terminal</span> DEVELOPERS</a>
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">payments</span> PRICING</a>
+<a class="text-zinc-600 hover:text-[#815EF8] transition-colors cursor-crosshair flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[14px]">network_node</span> TESTNET</a>
+</div>
+<div class="font-['Inter'] text-[10px] tracking-[0.2em] uppercase text-zinc-600">
+                © 2025 DOPAMINT — ALL RIGHTS RESERVED
+            </div>
+</div>
+</footer>
+</body></html>
