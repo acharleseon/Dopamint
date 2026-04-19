@@ -32,7 +32,7 @@ export function Footer() {
             style={{ display: 'flex', alignItems: 'center' }}
           >
             <img
-              src="/logo.png"
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="DOPAMINT"
               style={{ height: 16, width: 'auto', display: 'block' }}
             />

@@ -114,7 +114,7 @@ export function Navbar() {
             style={{ display: 'flex', alignItems: 'center' }}
           >
             <img
-              src="/logo.png"
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="DOPAMINT"
               style={{ height: 20, width: 'auto', display: 'block' }}
             />
