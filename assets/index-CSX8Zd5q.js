@@ -65,6 +65,7 @@ Error generating stack: `+e.message+`
             height: 340px;
             margin-left: 0;
             margin-right: 0;
+            margin-top: var(--space-3xl);
             transform: none;
           }
           .hero-text {
