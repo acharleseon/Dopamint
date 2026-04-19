@@ -59,6 +59,7 @@ export function CTASection() {
           shockStrength={4}
           resistance={700}
           returnDuration={1.4}
+          style={{}}
         />
       </div>
 

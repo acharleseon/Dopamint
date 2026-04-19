@@ -123,6 +123,7 @@ export function Hero() {
                 color="#2F8088"
                 speed="5s"
                 thickness={2}
+                style={{}}
               >
                 Build with Core
               </StarBorder>
