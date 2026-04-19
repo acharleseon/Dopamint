@@ -240,7 +240,7 @@ export function WhyDopamint() {
             </div>
           </div>
 
-          <div style={{ position: 'relative', height: '550px', transform: 'scale(1.25)' }}>
+          <div className="spline-container" style={{ position: 'relative', height: '550px', transform: 'scale(1.25)' }}>
             <Suspense
               fallback={
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -272,6 +272,7 @@ export function WhyDopamint() {
           .why-cards { grid-template-columns: 1fr !important; }
           .why-caps { grid-template-columns: 1fr !important; }
           .center-divider, .center-divider-line { display: none !important; }
+          .spline-container { height: 350px !important; transform: scale(1) !important; }
         }
       `}</style>
     </section>

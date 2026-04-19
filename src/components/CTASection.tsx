@@ -151,6 +151,13 @@ export function CTASection() {
           </p>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .cta-form { flex-direction: column !important; }
+          .cta-form button { width: 100%; }
+        }
+      `}</style>
     </section>
   );
 }
