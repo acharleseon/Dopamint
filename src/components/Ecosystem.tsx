@@ -140,12 +140,11 @@ export function Ecosystem() {
 
                 {/* Col 3 — CTA */}
                 <button
-                  className="btn btn-outline"
+                  className="btn btn-outline eco-btn"
                   style={{
                     borderColor: p.borderColor, color: p.color,
                     padding: '10px 20px', fontSize: '11px',
                     flexShrink: 0, whiteSpace: 'nowrap',
-                    marginLeft: 'auto',
                   }}
                 >
                   EXPLORE {p.name.toUpperCase()}
@@ -166,11 +165,21 @@ export function Ecosystem() {
           border-color: rgba(255, 255, 255, 0.5) !important;
           transform: translateY(-2px);
         }
-        @media (max-width: 900px) {
-          .eco-cards .eco-product-card { flex-direction: column !important; gap: var(--space-lg) !important; }
+        .eco-btn {
+          margin-left: auto;
         }
-        @media (max-width: 768px) {
-          .eco-cards .eco-product-card { flex-direction: column !important; gap: var(--space-lg) !important; }
+        @media (max-width: 900px) {
+          .eco-cards .eco-product-card { 
+            flex-direction: column !important; 
+            gap: var(--space-lg) !important; 
+            align-items: flex-start !important; 
+          }
+          .eco-btn { 
+            margin-left: 0 !important; 
+            margin-top: var(--space-sm);
+            width: 100%; 
+            justify-content: center; 
+          }
         }
       `}</style>
     </section>
