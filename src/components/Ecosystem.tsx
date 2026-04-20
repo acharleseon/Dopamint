@@ -1,29 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactElement } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from './ScrambledText';
+import Stack from './Stack';
+import PixelTransition from './PixelTransition';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PRODUCTS = [
-  {
-    name: 'DOPEkin',
-    subtitle: 'AI Companion Platform',
-    color: 'var(--purple)',
-    glowColor: 'rgba(129, 94, 248, 0.08)',
-    borderColor: 'rgba(129, 94, 248, 0.25)',
-    features: ['Persistent emotional memory', 'Voice & avatar pipeline', 'Multi-agent relationships', 'Privacy-first architecture'],
-    icon: 'smart_toy',
-  },
-  {
-    name: 'DOPEtwin',
-    subtitle: 'Creator Monetization Layer',
-    color: 'var(--blue)',
-    glowColor: 'rgba(59, 130, 246, 0.08)',
-    borderColor: 'rgba(59, 130, 246, 0.25)',
-    features: ['Digital twin creation', 'Revenue sharing & licensing', 'Fan interaction loops', 'Creator analytics dashboard'],
-    icon: 'groups',
-  },
+const DOPEKIN_IMAGES = [
+  'https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=500&auto=format',
+  'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=500&auto=format',
 ];
 
 export function Ecosystem() {
@@ -38,19 +26,28 @@ export function Ecosystem() {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 78%', once: true },
       });
 
-      gsap.fromTo('.eco-card-left', { y: 35, opacity: 0 }, {
+      gsap.fromTo('.eco-card-left', { y: 40, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
-        scrollTrigger: { trigger: '.eco-cards', start: 'top 80%', once: true },
+        scrollTrigger: { trigger: '.eco-cards-grid', start: 'top 80%', once: true },
       });
 
-      gsap.fromTo('.eco-card-right', { y: 50, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.7, delay: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: '.eco-cards', start: 'top 80%', once: true },
+      gsap.fromTo('.eco-card-right', { y: 55, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.7, delay: 0.14, ease: 'power3.out',
+        scrollTrigger: { trigger: '.eco-cards-grid', start: 'top 80%', once: true },
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
+
+  const dopekinCards: ReactElement[] = DOPEKIN_IMAGES.map((src, i) => (
+    <img
+      key={i}
+      src={src}
+      alt={`dopekin-${i + 1}`}
+      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+    />
+  ));
 
   return (
     <section ref={sectionRef} className="section" id="protocol">
@@ -67,118 +64,217 @@ export function Ecosystem() {
           </h2>
         </div>
 
-        {/* Main Card Container */}
-        <div
-          style={{
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border)',
-            padding: 'var(--space-xl)',
-            position: 'relative',
-          }}
-        >
-          {/* Subtle purple glow on background */}
-          <div style={{
-            position: 'absolute', top: -1, left: '30%', right: '30%', height: 1,
-            background: 'linear-gradient(90deg, transparent, rgba(129,94,248,0.5), transparent)',
-          }} />
+        {/* Two-column card grid */}
+        <div className="eco-cards-grid">
 
-          <div className="eco-cards" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 0, position: 'relative' }}>
-            {PRODUCTS.map((p, i) => (
-            <div
-                key={p.name}
-                className={`card eco-product-card ${i === 0 ? 'eco-card-left' : 'eco-card-right'}`}
-                style={{
-                  background: p.glowColor,
-                  borderColor: p.borderColor,
-                  padding: 'var(--space-2xl) var(--space-xl)',
-                  opacity: 0,
-                  borderTop: i > 0 ? '1px solid var(--border)' : undefined,
-                  display: 'flex',
-                  gap: 'var(--space-3xl)',
-                  alignItems: 'center',
-                }}
-              >
-                {/* Col 1 — Branding */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-md)',
-                  flexShrink: 0,
-                  minWidth: 200,
-                }}>
-                  <div style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    width: 40, height: 40,
-                    background: p.glowColor,
-                    border: `1px solid ${p.borderColor}`,
-                    flexShrink: 0,
-                  }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: 22, color: p.color }}>{p.icon}</span>
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-headline)', fontSize: '1.2rem', fontWeight: 800, marginBottom: 3 }}>
-                      {p.name}
-                    </h3>
-                    <p style={{ fontFamily: 'var(--font-label)', fontSize: '10px', color: p.color, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                      {p.subtitle}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Col 2 — Features */}
-                <ul style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-                  {p.features.map((f, fi) => (
-                    <li key={fi} style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      fontSize: '13px', color: 'var(--text-secondary)',
-                    }}>
-                      <span style={{ width: 4, height: 4, borderRadius: '50%', background: p.color, flexShrink: 0 }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Col 3 — CTA */}
-                <button
-                  className="btn btn-outline eco-btn"
-                  style={{
-                    borderColor: p.borderColor, color: p.color,
-                    padding: '10px 20px', fontSize: '11px',
-                    flexShrink: 0, whiteSpace: 'nowrap',
-                  }}
-                >
-                  EXPLORE {p.name.toUpperCase()}
-                  <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
-                </button>
+          {/* ── DOPEkin Card ── */}
+          <div className="card eco-product-card eco-card-left" style={{ opacity: 0 }}>
+            {/* Header */}
+            <div className="eco-card-header">
+              <div className="eco-icon-box" style={{ borderColor: 'rgba(129, 94, 248, 0.35)', background: 'rgba(129, 94, 248, 0.08)' }}>
+                <span className="material-symbols-outlined" style={{ color: 'var(--purple)' }}>smart_toy</span>
               </div>
-            ))}
+              <div>
+                <h3 className="eco-product-name">DOPEkin</h3>
+                <p className="eco-product-subtitle" style={{ color: 'var(--purple)' }}>AI COMPANION PLATFORM</p>
+              </div>
+            </div>
 
+            {/* Stack Image Component */}
+            <div className="eco-image-area">
+              <div style={{ width: '100%', height: '100%' }}>
+                <Stack
+                  randomRotation={true}
+                  sensitivity={180}
+                  sendToBackOnClick={true}
+                  autoplay={true}
+                  autoplayDelay={2800}
+                  pauseOnHover={true}
+                  mobileClickOnly={true}
+                  cards={dopekinCards as never[]}
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="eco-desc">
+              Meet AI companion friends that remember who you are, pick up where you left off,
+              and grow more present with every conversation.
+            </p>
+
+            {/* CTA */}
+            <button
+              className="btn btn-outline eco-cta"
+              style={{ borderColor: 'rgba(129, 94, 248, 0.4)', color: 'var(--purple)' }}
+            >
+              EXPLORE DOPEKIN
+              <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+            </button>
           </div>
+
+          {/* ── DOPEtwin Card ── */}
+          <div className="card eco-product-card eco-card-right" style={{ opacity: 0 }}>
+            {/* Header */}
+            <div className="eco-card-header">
+              <div className="eco-icon-box" style={{ borderColor: 'rgba(47, 128, 136, 0.35)', background: 'rgba(47, 128, 136, 0.08)' }}>
+                <span className="material-symbols-outlined" style={{ color: 'var(--teal)' }}>groups</span>
+              </div>
+              <div>
+                <h3 className="eco-product-name">DOPEtwin</h3>
+                <p className="eco-product-subtitle" style={{ color: 'var(--teal)' }}>CREATOR MONETIZATION LAYER</p>
+              </div>
+            </div>
+
+            {/* PixelTransition Image Component */}
+            <div className="eco-image-area">
+              <PixelTransition
+                firstContent={
+                  <img
+                    src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=500&auto=format"
+                    alt="dopetwin default"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                }
+                secondContent={
+                  <div style={{
+                    width: '100%', height: '100%',
+                    display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', justifyContent: 'center',
+                    background: 'linear-gradient(135deg, rgba(47,128,136,0.2), rgba(59,14,232,0.15))',
+                    gap: 12, padding: 24,
+                  }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: 48, color: 'var(--teal)' }}>sync_alt</span>
+                    <p style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem', textAlign: 'center' }}>Your Digital Twin, Earning 24/7</p>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textAlign: 'center' }}>Deploy anywhere, define how it behaves</p>
+                  </div>
+                }
+                gridSize={10}
+                pixelColor="rgba(47, 128, 136, 0.7)"
+                animationStepDuration={0.35}
+                aspectRatio="75%"
+                style={{ width: '100%', height: '100%', borderRadius: '12px', border: 'none' }}
+              />
+            </div>
+
+            {/* Description */}
+            <p className="eco-desc">
+              Turn your AI identity into an on-chain asset. Deploy it anywhere, define how it
+              behaves, and earn from every interaction even when you're not there.
+            </p>
+
+            {/* CTA */}
+            <button
+              className="btn btn-outline eco-cta"
+              style={{ borderColor: 'rgba(47, 128, 136, 0.4)', color: 'var(--teal)' }}
+            >
+              EXPLORE DOPETWIN
+              <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+            </button>
+          </div>
+
         </div>
       </div>
 
       <style>{`
+        .eco-cards-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-xl);
+          margin-top: var(--space-2xl);
+        }
+
         .eco-product-card {
-          transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-lg);
+          padding: var(--space-xl);
+          background: var(--bg-surface);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          position: relative;
+          overflow: hidden;
+          transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        .eco-product-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+        }
+
         .eco-product-card:hover {
-          border-color: rgba(255, 255, 255, 0.5) !important;
-          transform: translateY(-2px);
+          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-3px);
         }
-        .eco-btn {
-          margin-left: auto;
+
+        .eco-card-header {
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
+          flex-shrink: 0;
         }
-        @media (max-width: 900px) {
-          .eco-cards .eco-product-card { 
-            flex-direction: column !important; 
-            gap: var(--space-lg) !important; 
-            align-items: flex-start !important; 
-          }
-          .eco-btn { 
-            margin-left: 0 !important; 
-            margin-top: var(--space-sm);
-            width: 100%; 
-            justify-content: center; 
+
+        .eco-icon-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          border: 1px solid;
+          border-radius: 10px;
+          flex-shrink: 0;
+        }
+
+        .eco-icon-box .material-symbols-outlined {
+          font-size: 22px;
+        }
+
+        .eco-product-name {
+          font-family: var(--font-headline);
+          font-size: 1.25rem;
+          font-weight: 800;
+          margin-bottom: 2px;
+          color: var(--text-primary);
+        }
+
+        .eco-product-subtitle {
+          font-family: var(--font-label);
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+        }
+
+        .eco-image-area {
+          width: 100%;
+          height: 240px;
+          border-radius: 12px;
+          overflow: hidden;
+          flex-shrink: 0;
+          background: rgba(255,255,255,0.03);
+        }
+
+        .eco-desc {
+          font-size: 13.5px;
+          color: var(--text-secondary);
+          line-height: 1.7;
+          flex: 1;
+          text-align: center;
+        }
+
+        .eco-cta {
+          width: 100%;
+          justify-content: center;
+          padding: 12px 20px;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+          .eco-cards-grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
           }
         }
       `}</style>
