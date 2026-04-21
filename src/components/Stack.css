@@ -27,6 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Dark background so back cards don't show as white lines */
+  background: #0c0c0c;
 }
 
 .card img {

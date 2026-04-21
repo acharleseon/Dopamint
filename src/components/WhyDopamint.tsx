@@ -121,9 +121,12 @@ export function WhyDopamint() {
               className="card card-glow why-card"
               style={{
                 opacity: 0,
-                padding: 'var(--space-xl)',
+                padding: 'var(--space-xl) var(--space-xl)',
                 backdropFilter: 'blur(8px)',
                 cursor: 'default',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--space-md)',
               }}
             >
               {/* Header row: icon left, ID right */}
@@ -131,14 +134,15 @@ export function WhyDopamint() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: 'var(--space-lg)',
+                width: '100%',
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: 36,
-                  height: 36,
+                  width: 38,
+                  height: 38,
+                  flexShrink: 0,
                   background: f.bg,
                   border: `1px solid ${f.border}`,
                 }}>
@@ -159,10 +163,10 @@ export function WhyDopamint() {
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 'var(--space-md)', fontFamily: 'var(--font-headline)' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, lineHeight: 1.3, fontFamily: 'var(--font-headline)' }}>
                 {f.title}
               </h3>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.75 }}>{f.desc}</p>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.7, margin: 0 }}>{f.desc}</p>
             </div>
           ))}
         </div>
@@ -240,7 +244,7 @@ export function WhyDopamint() {
             </div>
           </div>
 
-          <div className="spline-container" style={{ position: 'relative', height: '550px', transform: 'scale(1.25)' }}>
+          <div className="spline-container" style={{ position: 'relative', height: '380px' }}>
             <Suspense
               fallback={
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -254,7 +258,7 @@ export function WhyDopamint() {
               }
             >
               <Spline
-                scene="https://prod.spline.design/HGWtsGJoSsQAbPnb/scene.splinecode"
+                scene="https://prod.spline.design/FpJD4DXzzfIY0obO/scene.splinecode"
                 style={{ width: '100%', height: '100%', position: 'absolute', inset: 0, pointerEvents: 'none' }}
               />
             </Suspense>

@@ -6,6 +6,7 @@ export default function MagnetLines({
   columns = 9,
   containerSize = '80vmin',
   lineColor = '#efefef',
+  lineColorAlt = '',
   lineWidth = '1vmin',
   lineHeight = '6vmin',
   baseAngle = -10,
@@ -54,7 +55,7 @@ export default function MagnetLines({
       key={i}
       style={{
         '--rotate': `${baseAngle}deg`,
-        backgroundColor: lineColor,
+        backgroundColor: lineColorAlt && i % 2 === 1 ? lineColorAlt : lineColor,
         width: lineWidth,
         height: lineHeight,
       }}

@@ -83,6 +83,9 @@ export function WhoSection() {
                 opacity: 0,
                 cursor: 'default',
                 padding: 'var(--space-2xl) var(--space-xl)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--space-lg)',
               }}
               onMouseEnter={(e) => {
                 const iconEl = e.currentTarget.querySelector('.who-icon') as HTMLElement;
@@ -99,7 +102,6 @@ export function WhoSection() {
                   fontSize: 32, color: 'var(--text-dim)',
                   transition: 'color 0.3s ease',
                   display: 'block',
-                  marginBottom: 'var(--space-lg)',
                 }}
               >
                 {a.icon}
@@ -108,7 +110,7 @@ export function WhoSection() {
               <h3 style={{
                 fontSize: '1.15rem', fontWeight: 700,
                 fontFamily: 'var(--font-headline)',
-                marginBottom: 'var(--space-lg)',
+                lineHeight: 1.25,
               }}>
                 {a.title}
               </h3>
@@ -116,11 +118,11 @@ export function WhoSection() {
               <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                 {a.bullets.map((b, bi) => (
                   <li key={bi} style={{
-                    display: 'flex', alignItems: 'flex-start', gap: 8,
-                    fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6,
+                    display: 'flex', alignItems: 'flex-start', gap: 10,
+                    fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6,
                   }}>
                     <span style={{
-                      width: 4, height: 4, borderRadius: '50%',
+                      width: 5, height: 5, borderRadius: '50%',
                       background: a.color, flexShrink: 0, marginTop: 7,
                     }} />
                     {b}

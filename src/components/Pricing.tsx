@@ -101,9 +101,11 @@ export function Pricing() {
                 borderColor: tier.popular ? 'rgba(129, 94, 248, 0.4)' : 'var(--border)',
                 background: tier.popular ? 'rgba(129, 94, 248, 0.03)' : 'var(--bg-surface)',
                 position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              {/* Popular badge */}
+              {/* Popular bar */}
               {tier.popular && (
                 <div style={{
                   position: 'absolute', top: -1, left: 0, right: 0, height: 2,
@@ -117,12 +119,12 @@ export function Pricing() {
                 style={{
                   position: 'absolute', top: 'var(--space-lg)', right: 'var(--space-lg)',
                   fontSize: 40, opacity: 0.04,
-                  transition: 'opacity 0.3s ease',
                 }}
               >
                 {tier.popular ? 'diamond' : 'hexagon'}
               </span>
 
+              {/* Popular badge */}
               {tier.popular && (
                 <span style={{
                   display: 'inline-block',
@@ -131,49 +133,51 @@ export function Pricing() {
                   color: 'var(--purple)', marginBottom: 'var(--space-md)',
                   padding: '3px 8px',
                   border: '1px solid rgba(129,94,248,0.3)',
+                  alignSelf: 'flex-start',
                 }}>
                   Most Popular
                 </span>
               )}
 
+              {/* Tier name */}
               <h3 style={{
-                fontFamily: 'var(--font-headline)', fontSize: '1.15rem',
-                fontWeight: 700, marginBottom: 'var(--space-sm)',
+                fontFamily: 'var(--font-headline)', fontSize: '1rem',
+                fontWeight: 600, color: 'var(--text-secondary)',
+                marginBottom: 'var(--space-sm)',
+                textTransform: 'uppercase', letterSpacing: '0.08em',
               }}>
                 {tier.name}
               </h3>
 
+              {/* Price */}
               <div style={{
-                fontFamily: 'var(--font-headline)', fontSize: '2.5rem',
-                fontWeight: 900, marginBottom: 'var(--space-xl)',
+                fontFamily: 'var(--font-headline)', fontSize: '3rem',
+                fontWeight: 900, lineHeight: 1,
+                marginBottom: 'var(--space-xl)',
                 display: 'flex', alignItems: 'baseline', gap: 4,
               }}>
                 {tier.price}
                 <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 400 }}>{tier.period}</span>
               </div>
 
+              {/* CTA */}
               <button
                 className={tier.popular ? 'btn btn-primary' : 'btn btn-outline'}
-                style={{
-                  width: '100%', marginBottom: 'var(--space-xl)',
-                  justifyContent: 'center',
-                }}
+                style={{ width: '100%', marginBottom: 'var(--space-xl)', justifyContent: 'center' }}
               >
                 {tier.cta}
               </button>
 
-              <div style={{
-                borderTop: '1px solid var(--border)',
-                paddingTop: 'var(--space-lg)',
-              }}>
+              {/* Features */}
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: 'var(--space-lg)', flex: 1 }}>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                   {tier.features.map((f, fi) => (
                     <li key={fi} style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      fontSize: '13px', color: 'var(--text-secondary)',
+                      display: 'flex', alignItems: 'center', gap: 10,
+                      fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.5,
                     }}>
                       <span style={{
-                        width: 4, height: 4, borderRadius: '50%',
+                        width: 5, height: 5, borderRadius: '50%',
                         background: tier.popular ? 'var(--purple)' : 'var(--text-dim)',
                         flexShrink: 0,
                       }} />

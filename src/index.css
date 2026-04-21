@@ -114,8 +114,8 @@ body {
   background-color: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -157,8 +157,8 @@ body::before {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
 }
 
@@ -207,22 +207,22 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: var(--space-sm);
   font-family: var(--font-label);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--blue);
   margin-bottom: var(--space-xl);
 }
 
 .section-label .material-symbols-outlined {
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
   margin-bottom: var(--space-2xl);
-  max-width: 800px;
+  max-width: 820px;
 }
 
 /* ── Material Symbols Config ────────────────────────── */
@@ -242,10 +242,10 @@ ul, ol { list-style: none; }
   gap: var(--space-sm);
   padding: 14px 28px;
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   transition: all var(--duration-normal) var(--ease-out);
   position: relative;
   overflow: hidden;
@@ -414,7 +414,7 @@ ul, ol { list-style: none; }
   }
 
   .section-title {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    font-size: clamp(2rem, 8vw, 2.8rem);
   }
 }
 

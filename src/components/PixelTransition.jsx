@@ -33,8 +33,8 @@ function PixelTransition({
         pixel.classList.add('pixelated-image-card__pixel');
         pixel.style.backgroundColor = pixelColor;
         const size = 100 / gridSize;
-        pixel.style.width = `${size}%`;
-        pixel.style.height = `${size}%`;
+        pixel.style.width = `calc(${size}% + 1.5px)`;
+        pixel.style.height = `calc(${size}% + 1.5px)`;
         pixel.style.left = `${col * size}%`;
         pixel.style.top = `${row * size}%`;
         pixelGridEl.appendChild(pixel);

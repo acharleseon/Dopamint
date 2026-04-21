@@ -28,12 +28,12 @@ export function Ecosystem() {
 
       gsap.fromTo('.eco-card-left', { y: 40, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
-        scrollTrigger: { trigger: '.eco-cards-grid', start: 'top 80%', once: true },
+        scrollTrigger: { trigger: '.eco-outer-box', start: 'top 80%', once: true },
       });
 
       gsap.fromTo('.eco-card-right', { y: 55, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.7, delay: 0.14, ease: 'power3.out',
-        scrollTrigger: { trigger: '.eco-cards-grid', start: 'top 80%', once: true },
+        scrollTrigger: { trigger: '.eco-outer-box', start: 'top 80%', once: true },
       });
     }, sectionRef);
 
@@ -64,15 +64,18 @@ export function Ecosystem() {
           </h2>
         </div>
 
-        {/* Two-column card grid */}
-        <div className="eco-cards-grid">
+        {/* Single outer bordered container */}
+        <div className="eco-outer-box">
 
-          {/* ── DOPEkin Card ── */}
-          <div className="card eco-product-card eco-card-left" style={{ opacity: 0 }}>
-            {/* Header */}
-            <div className="eco-card-header">
-              <div className="eco-icon-box" style={{ borderColor: 'rgba(129, 94, 248, 0.35)', background: 'rgba(129, 94, 248, 0.08)' }}>
-                <span className="material-symbols-outlined" style={{ color: 'var(--purple)' }}>smart_toy</span>
+          {/* ── DOPEkin Column ── */}
+          <div className="eco-col eco-card-left" style={{ opacity: 0 }}>
+            {/* Header — top left */}
+            <div className="eco-col-header">
+              <div
+                className="eco-icon-box"
+                style={{ borderColor: 'rgba(129, 94, 248, 0.35)', background: 'rgba(129, 94, 248, 0.08)' }}
+              >
+                <span className="material-symbols-outlined" style={{ color: 'var(--purple)', fontSize: 20 }}>smart_toy</span>
               </div>
               <div>
                 <h3 className="eco-product-name">DOPEkin</h3>
@@ -80,9 +83,9 @@ export function Ecosystem() {
               </div>
             </div>
 
-            {/* Stack Image Component */}
-            <div className="eco-image-area">
-              <div style={{ width: '100%', height: '100%' }}>
+            {/* Image */}
+            <div className="eco-image-wrap">
+              <div className="eco-image-area">
                 <Stack
                   randomRotation={true}
                   sensitivity={180}
@@ -90,7 +93,7 @@ export function Ecosystem() {
                   autoplay={true}
                   autoplayDelay={2800}
                   pauseOnHover={true}
-                  mobileClickOnly={true}
+                  mobileClickOnly={false}
                   cards={dopekinCards as never[]}
                 />
               </div>
@@ -103,21 +106,29 @@ export function Ecosystem() {
             </p>
 
             {/* CTA */}
-            <button
-              className="btn btn-outline eco-cta"
-              style={{ borderColor: 'rgba(129, 94, 248, 0.4)', color: 'var(--purple)' }}
-            >
-              EXPLORE DOPEKIN
-              <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
-            </button>
+            <div className="eco-cta-wrap">
+              <button
+                className="btn btn-outline eco-cta"
+                style={{ borderColor: 'rgba(129, 94, 248, 0.4)', color: 'var(--purple)' }}
+              >
+                EXPLORE DOPEKIN
+                <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+              </button>
+            </div>
           </div>
 
-          {/* ── DOPEtwin Card ── */}
-          <div className="card eco-product-card eco-card-right" style={{ opacity: 0 }}>
-            {/* Header */}
-            <div className="eco-card-header">
-              <div className="eco-icon-box" style={{ borderColor: 'rgba(47, 128, 136, 0.35)', background: 'rgba(47, 128, 136, 0.08)' }}>
-                <span className="material-symbols-outlined" style={{ color: 'var(--teal)' }}>groups</span>
+          {/* Vertical divider */}
+          <div className="eco-divider" />
+
+          {/* ── DOPEtwin Column ── */}
+          <div className="eco-col eco-card-right" style={{ opacity: 0 }}>
+            {/* Header — top left */}
+            <div className="eco-col-header">
+              <div
+                className="eco-icon-box"
+                style={{ borderColor: 'rgba(47, 128, 136, 0.35)', background: 'rgba(47, 128, 136, 0.08)' }}
+              >
+                <span className="material-symbols-outlined" style={{ color: 'var(--teal)', fontSize: 20 }}>groups</span>
               </div>
               <div>
                 <h3 className="eco-product-name">DOPEtwin</h3>
@@ -125,35 +136,41 @@ export function Ecosystem() {
               </div>
             </div>
 
-            {/* PixelTransition Image Component */}
-            <div className="eco-image-area">
-              <PixelTransition
-                firstContent={
-                  <img
-                    src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=500&auto=format"
-                    alt="dopetwin default"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                }
-                secondContent={
-                  <div style={{
+            {/* Image */}
+            <div className="eco-image-wrap">
+              <div className="eco-image-area" style={{ position: 'relative' }}>
+                <PixelTransition
+                  firstContent={
+                    <img
+                      src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=500&auto=format"
+                      alt="dopetwin default"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  }
+                  secondContent={
+                    <div style={{
+                      width: '100%', height: '100%',
+                      display: 'flex', flexDirection: 'column',
+                      alignItems: 'center', justifyContent: 'center',
+                      background: 'linear-gradient(135deg, rgba(47,128,136,0.25), rgba(59,14,232,0.18))',
+                      gap: 12, padding: 24,
+                    }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: 48, color: 'var(--teal)' }}>sync_alt</span>
+                      <p style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem', textAlign: 'center' }}>Your Digital Twin, Earning 24/7</p>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textAlign: 'center' }}>Deploy anywhere, define how it behaves</p>
+                    </div>
+                  }
+                  gridSize={40}
+                  pixelColor="#ffffff"
+                  animationStepDuration={0.2}
+                  aspectRatio="0%"
+                  style={{
+                    position: 'absolute', inset: 0,
                     width: '100%', height: '100%',
-                    display: 'flex', flexDirection: 'column',
-                    alignItems: 'center', justifyContent: 'center',
-                    background: 'linear-gradient(135deg, rgba(47,128,136,0.2), rgba(59,14,232,0.15))',
-                    gap: 12, padding: 24,
-                  }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: 48, color: 'var(--teal)' }}>sync_alt</span>
-                    <p style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem', textAlign: 'center' }}>Your Digital Twin, Earning 24/7</p>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textAlign: 'center' }}>Deploy anywhere, define how it behaves</p>
-                  </div>
-                }
-                gridSize={10}
-                pixelColor="rgba(47, 128, 136, 0.7)"
-                animationStepDuration={0.35}
-                aspectRatio="75%"
-                style={{ width: '100%', height: '100%', borderRadius: '12px', border: 'none' }}
-              />
+                    borderRadius: '12px', border: 'none',
+                  }}
+                />
+              </div>
             </div>
 
             {/* Description */}
@@ -163,52 +180,58 @@ export function Ecosystem() {
             </p>
 
             {/* CTA */}
-            <button
-              className="btn btn-outline eco-cta"
-              style={{ borderColor: 'rgba(47, 128, 136, 0.4)', color: 'var(--teal)' }}
-            >
-              EXPLORE DOPETWIN
-              <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
-            </button>
+            <div className="eco-cta-wrap">
+              <button
+                className="btn btn-outline eco-cta"
+                style={{ borderColor: 'rgba(47, 128, 136, 0.4)', color: 'var(--teal)' }}
+              >
+                EXPLORE DOPETWIN
+                <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+              </button>
+            </div>
           </div>
 
         </div>
       </div>
 
       <style>{`
-        .eco-cards-grid {
+        /* ── Outer container — one box, two columns ── */
+        .eco-outer-box {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-xl);
+          grid-template-columns: 1fr 1px 1fr;
           margin-top: var(--space-2xl);
-        }
-
-        .eco-product-card {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-lg);
-          padding: var(--space-xl);
           background: var(--bg-surface);
           border: 1px solid var(--border);
           border-radius: 16px;
-          position: relative;
           overflow: hidden;
-          transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          position: relative;
         }
 
-        .eco-product-card::before {
+        .eco-outer-box::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0; height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+          pointer-events: none;
         }
 
-        .eco-product-card:hover {
-          border-color: rgba(255, 255, 255, 0.15);
-          transform: translateY(-3px);
+        /* Vertical divider */
+        .eco-divider {
+          background: var(--border);
+          width: 1px;
+          align-self: stretch;
         }
 
-        .eco-card-header {
+        /* Each column */
+        .eco-col {
+          display: flex;
+          flex-direction: column;
+          padding: var(--space-xl) var(--space-xl) var(--space-xl);
+          gap: var(--space-lg);
+        }
+
+        /* Header row: icon + name/subtitle */
+        .eco-col-header {
           display: flex;
           align-items: center;
           gap: var(--space-md);
@@ -219,62 +242,80 @@ export function Ecosystem() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
-          height: 44px;
+          width: 40px;
+          height: 40px;
           border: 1px solid;
-          border-radius: 10px;
+          border-radius: 8px;
           flex-shrink: 0;
-        }
-
-        .eco-icon-box .material-symbols-outlined {
-          font-size: 22px;
         }
 
         .eco-product-name {
           font-family: var(--font-headline);
-          font-size: 1.25rem;
+          font-size: 1.2rem;
           font-weight: 800;
-          margin-bottom: 2px;
+          margin-bottom: 1px;
           color: var(--text-primary);
         }
 
         .eco-product-subtitle {
           font-family: var(--font-label);
-          font-size: 10px;
+          font-size: 11px;
           text-transform: uppercase;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.13em;
         }
 
+        /* Image wrapper: no padding — fills full column width */
+        .eco-image-wrap {
+          flex-shrink: 0;
+        }
+
+        /* Image area: 4:3 aspect ratio */
         .eco-image-area {
           width: 100%;
-          height: 240px;
-          border-radius: 12px;
+          aspect-ratio: 4 / 3;
           overflow: hidden;
-          flex-shrink: 0;
-          background: rgba(255,255,255,0.03);
+          background: transparent;
+          position: relative;
         }
 
+        /* Description */
         .eco-desc {
-          font-size: 13.5px;
+          font-size: 15px;
           color: var(--text-secondary);
-          line-height: 1.7;
-          flex: 1;
+          line-height: 1.75;
           text-align: center;
+          padding: 0 var(--space-sm);
+          flex: 1;
+        }
+
+        /* CTA wrapper — centers the button */
+        .eco-cta-wrap {
+          display: flex;
+          justify-content: center;
+          flex-shrink: 0;
         }
 
         .eco-cta {
-          width: 100%;
-          justify-content: center;
-          padding: 12px 20px;
-          font-size: 11px;
+          padding: 10px 28px;
+          font-size: 12px;
           letter-spacing: 0.1em;
-          flex-shrink: 0;
+          white-space: nowrap;
         }
 
+        /* Mobile: stack columns */
         @media (max-width: 768px) {
-          .eco-cards-grid {
+          .eco-outer-box {
             grid-template-columns: 1fr;
-            gap: var(--space-lg);
+          }
+          .eco-divider {
+            width: 100%;
+            height: 1px;
+          }
+          .eco-col {
+            padding: var(--space-lg);
+          }
+          .eco-image-wrap {
+            padding: 0;
           }
         }
       `}</style>

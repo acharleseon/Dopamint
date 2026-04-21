@@ -200,7 +200,8 @@ export function Hero() {
                 rows={6}
                 columns={6}
                 containerSize="clamp(270px, 45vmin, 480px)"
-                lineColor="rgba(47, 128, 136, 0.35)"
+                lineColor="rgba(200, 80, 220, 0.5)"
+                lineColorAlt="rgba(255, 60, 160, 0.45)"
                 lineWidth="0.68vmin"
                 lineHeight="4.8vmin"
                 baseAngle={0}
