@@ -7,13 +7,6 @@ import HoverFlipCard from './HoverFlipCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const DOPEKIN_IMAGES = [
-  'https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=500&auto=format',
-  'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=500&auto=format',
-  'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=500&auto=format',
-  'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=500&auto=format',
-];
-
 const DOPETWIN_FEATURES = [
   { title: 'Shannon Elizabeth', icon: 'public', img: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=400&auto=format' },
   { title: 'Blac Chyna', icon: 'schedule', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format' },
