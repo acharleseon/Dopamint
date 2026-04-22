@@ -112,7 +112,7 @@ export function Pricing() {
                   display: 'inline-block',
                   fontFamily: 'var(--font-body)', fontSize: '10px',
                   textTransform: 'uppercase', letterSpacing: '0.15em',
-                  color: 'var(--color-text)', fontWeight: 700,
+                  fontWeight: 700,
                   marginBottom: 'var(--space-md)',
                   padding: '3px 10px',
                   background: 'var(--color-text)',

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactElement } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from './ScrambledText';
@@ -42,15 +42,6 @@ export function Ecosystem() {
 
     return () => ctx.revert();
   }, []);
-
-  const dopekinCards: ReactElement[] = DOPEKIN_IMAGES.map((src, i) => (
-    <img
-      key={i}
-      src={src}
-      alt={`dopekin-${i + 1}`}
-      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-    />
-  ));
 
   return (
     <section ref={sectionRef} className="section" id="protocol" style={{ background: '#fafafa' }}>

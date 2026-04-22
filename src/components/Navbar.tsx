@@ -22,7 +22,7 @@ export function Navbar() {
   const tlRef        = useRef<gsap.core.Timeline | null>(null);
 
   const isScrollingClick = useRef(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Scroll spy & solid effect
   useEffect(() => {
