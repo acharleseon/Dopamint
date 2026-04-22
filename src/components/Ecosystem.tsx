@@ -65,7 +65,7 @@ export function Ecosystem() {
                 <span className="material-symbols-outlined" style={{ color: 'var(--color-text)', fontSize: 20 }}>smart_toy</span>
               </div>
               <div>
-                <h3 className="eco-product-name">DopeKin</h3>
+                <h3 className="eco-product-name" style={{ fontFamily: 'var(--font-title)', fontSize: '3.5rem', textTransform: 'uppercase', lineHeight: 1 }}>DopeKin</h3>
                 <p className="eco-product-subtitle" style={{ color: 'var(--color-text-muted)' }}>Emotional and Revenue Layer of AI Companions</p>
               </div>
             </div>
@@ -75,7 +75,7 @@ export function Ecosystem() {
           <div className="eco-outer-box" style={{ opacity: 1, marginBottom: 'var(--space-2xl)' }}>
             <div className="eco-grid">
               <div className="eco-col eco-card" style={{ opacity: 0 }}>
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>For Companion Seekers</h4>
+                <h4 style={{ fontFamily: 'var(--font-title)', fontSize: '3rem', marginBottom: 'var(--space-sm)', color: 'var(--color-text)', letterSpacing: '0.02em', textTransform: 'uppercase' }}>For Companion Seekers</h4>
                 <div className="eco-image-wrap">
                   <div className="eco-image-area" style={{ overflow: 'visible', background: 'transparent', height: '420px' }}>
                     <CoverflowGallery />
@@ -100,7 +100,7 @@ export function Ecosystem() {
           <div className="eco-outer-box" style={{ opacity: 1 }}>
             <div className="eco-grid">
               <div className="eco-col eco-card" style={{ opacity: 0 }}>
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>For Creator Revenue</h4>
+                <h4 style={{ fontFamily: 'var(--font-title)', fontSize: '3rem', marginBottom: 'var(--space-sm)', color: 'var(--color-text)', letterSpacing: '0.02em', textTransform: 'uppercase' }}>For Creator Revenue</h4>
                 <div className="eco-image-wrap">
                   <div className="eco-image-area" style={{ 
                     overflow: 'visible', 

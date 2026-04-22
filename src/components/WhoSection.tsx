@@ -30,6 +30,18 @@ const AUDIENCES = [
     accentColor: 'var(--color-secondary)',
     desc: 'Work with long-session memory and real interaction data.',
   },
+  {
+    icon: 'sports_esports',
+    title: 'Gaming & Virtual Worlds',
+    accentColor: 'var(--color-primary)',
+    desc: 'Create NPCs and in-game companions that remember, respond, and evolve in real time.',
+  },
+  {
+    icon: 'business_center',
+    title: 'Enterprise & CX Teams',
+    accentColor: 'var(--color-secondary)',
+    desc: 'Launch AI agents for support and engagement with persistent memory and natural interaction.',
+  },
 ];
 
 export function WhoSection() {
@@ -132,7 +144,7 @@ export function WhoSection() {
       </div>
 
       <style>{`
-        .who-grid { grid-template-columns: repeat(4, 1fr); }
+        .who-grid { grid-template-columns: repeat(3, 1fr); }
         @media (max-width: 1024px) {
           .who-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }

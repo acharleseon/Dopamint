@@ -27,8 +27,8 @@ export default function App() {
       <main>
         <Hero />
         <MarqueeTicker />
-        <Ecosystem />
         <WhatIsDopamint />
+        <Ecosystem />
         <WhyDopamint />
         <Pipeline />
         <WhoSection />
