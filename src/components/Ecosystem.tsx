@@ -65,7 +65,7 @@ export function Ecosystem() {
                 <span className="material-symbols-outlined" style={{ color: 'var(--color-text)', fontSize: 20 }}>smart_toy</span>
               </div>
               <div>
-                <h3 className="eco-product-name" style={{ fontFamily: 'var(--font-title)', fontSize: '3.5rem', textTransform: 'uppercase', lineHeight: 1 }}>DopeKin</h3>
+                <h3 className="eco-product-name" style={{ fontFamily: 'var(--font-title)', fontSize: '3.5rem', textTransform: 'uppercase', lineHeight: 1, letterSpacing: '0.04em' }}>DopeKin</h3>
                 <p className="eco-product-subtitle" style={{ color: 'var(--color-text-muted)' }}>Emotional and Revenue Layer of AI Companions</p>
               </div>
             </div>
