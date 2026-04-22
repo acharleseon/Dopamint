@@ -6,14 +6,14 @@ import ScrambledText from './ScrambledText';
 gsap.registerPlugin(ScrollTrigger);
 
 const PILLS = [
-  { label: 'RESTful APIs', icon: 'api' },
-  { label: 'Python SDK', icon: 'code' },
-  { label: 'TypeScript SDK', icon: 'javascript' },
+  { label: 'APIs', icon: 'api' },
+  { label: 'SDKs', icon: 'code' },
   { label: 'Event Streams', icon: 'stream' },
-  { label: 'Webhooks', icon: 'webhook' },
-  { label: 'CLI Tools', icon: 'terminal' },
-  { label: 'Docker Images', icon: 'deployed_code' },
-  { label: 'WebSockets', icon: 'electrical_services' },
+  { label: 'Memory Controls', icon: 'memory' },
+  { label: 'Safety Layer', icon: 'security' },
+  { label: 'Model Routing', icon: 'route' },
+  { label: 'Deployment Controls', icon: 'rocket_launch' },
+  { label: 'Identity API', icon: 'fingerprint' },
 ];
 
 const CODE_LINES = [
@@ -52,7 +52,6 @@ export function Developers() {
         scrollTrigger: { trigger: '.dev-pills', start: 'top 85%', once: true },
       });
 
-      // Code typewriter
       if (codeRef.current) {
         const lines = codeRef.current.querySelectorAll('.code-line');
         gsap.fromTo(lines, { opacity: 0, x: -8 }, {
@@ -66,16 +65,16 @@ export function Developers() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section" id="developers">
+    <section ref={sectionRef} className="section" id="developers" style={{ background: '#fafafa' }}>
       <div className="container">
         <div className="dev-header" style={{ opacity: 0 }}>
           <div className="section-label">
             <span className="material-symbols-outlined">code</span>
             DEVELOPERS
           </div>
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ color: 'var(--color-text)' }}>
             <ScrambledText radius={120} duration={1.0} speed={0.45}>
-              Built for shipping, not experimenting.
+              Built for shipping,<br />not experimenting.
             </ScrambledText>
           </h2>
         </div>
@@ -83,10 +82,18 @@ export function Developers() {
         <div className="dev-content" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 'var(--space-2xl)', alignItems: 'start' }}>
           {/* Left - Capability Pills */}
           <div>
+            <p style={{
+              fontFamily: 'var(--font-body)', fontSize: '1rem',
+              color: 'var(--color-text-muted)', marginBottom: 'var(--space-xl)',
+              lineHeight: 1.6, fontWeight: 400
+            }}>
+              Everything you need to go from idea to production — without duct-taping five services together.
+            </p>
             <h4 style={{
-              fontFamily: 'var(--font-label)', fontSize: '12px',
+              fontFamily: 'var(--font-body)', fontSize: '11px',
               textTransform: 'uppercase', letterSpacing: '0.15em',
-              color: 'var(--text-dim)', marginBottom: 'var(--space-lg)',
+              color: 'var(--color-text-dim)', marginBottom: 'var(--space-lg)',
+              fontWeight: 700,
             }}>
               Infrastructure
             </h4>
@@ -99,19 +106,11 @@ export function Developers() {
                     display: 'inline-flex', alignItems: 'center', gap: 6,
                     padding: '10px 14px',
                     border: '1px solid var(--border)',
-                    background: 'var(--bg-surface)',
-                    fontFamily: 'var(--font-label)',
-                    fontSize: '12px', color: 'var(--text-secondary)',
-                    transition: 'all 0.2s ease',
+                    background: 'var(--color-primary)',
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '12px', fontWeight: 500,
+                    color: 'var(--color-text-body)',
                     cursor: 'default', opacity: 0,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--purple)';
-                    e.currentTarget.style.color = 'var(--purple-light)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border)';
-                    e.currentTarget.style.color = 'var(--text-secondary)';
                   }}
                 >
                   <span className="material-symbols-outlined" style={{ fontSize: 14 }}>{pill.icon}</span>
@@ -124,26 +123,23 @@ export function Developers() {
           {/* Right - Code Editor */}
           <div
             style={{
-              border: '1px solid var(--border)',
-              background: 'var(--bg-surface)',
+              border: '2px solid var(--color-text)',
+              background: '#0d0d0d',
               overflow: 'hidden',
               position: 'relative',
             }}
           >
-            {/* Iridescent top edge */}
-            <div style={{
-              position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-              background: 'linear-gradient(90deg, var(--purple), var(--blue), var(--orange))',
-              opacity: 0.5,
-            }} />
+            {/* Yellow top edge */}
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'var(--color-primary)' }} />
 
             {/* Editor Header */}
             <div
               style={{
                 display: 'flex', alignItems: 'center',
                 padding: '10px 14px',
-                borderBottom: '1px solid var(--border)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
                 gap: 'var(--space-md)',
+                marginTop: 3,
               }}
             >
               <div style={{ display: 'flex', gap: 5 }}>
@@ -151,34 +147,28 @@ export function Developers() {
                 <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
                 <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
               </div>
-              <span style={{
-                fontFamily: 'var(--font-label)', fontSize: '11px',
-                color: 'var(--text-dim)', letterSpacing: '0.05em',
-              }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.05em' }}>
                 quickstart.py
               </span>
             </div>
 
             {/* Code Block */}
-            <div ref={codeRef} style={{ padding: 'var(--space-lg)', fontFamily: 'var(--font-label)', fontSize: '13px', lineHeight: 1.85, overflow: 'auto' }}>
+            <div ref={codeRef} style={{ padding: 'var(--space-lg)', fontFamily: 'monospace', fontSize: '13px', lineHeight: 1.85, overflow: 'auto' }}>
               {CODE_LINES.map((line, i) => (
                 <div
                   key={i}
                   className="code-line"
-                  style={{
-                    display: 'flex', gap: 12, opacity: 0,
-                    minHeight: line.text ? 'auto' : '1.85em',
-                  }}
+                  style={{ display: 'flex', gap: 12, opacity: 0, minHeight: line.text ? 'auto' : '1.85em' }}
                 >
-                  <span style={{ color: 'var(--text-dim)', fontSize: '11px', width: 20, textAlign: 'right', userSelect: 'none', flexShrink: 0 }}>
+                  <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '11px', width: 20, textAlign: 'right', userSelect: 'none', flexShrink: 0 }}>
                     {i + 1}
                   </span>
                   <span style={{
-                    color: line.cls === 'kw' ? 'var(--purple-light)'
-                         : line.cls === 'cm' ? 'var(--text-dim)'
-                         : line.cls === 'str' ? 'var(--orange-light)'
-                         : line.cls === 'kw2' ? 'var(--blue-light)'
-                         : 'var(--text-secondary)',
+                    color: line.cls === 'kw'  ? 'var(--color-primary)'
+                         : line.cls === 'cm'  ? 'rgba(255,255,255,0.3)'
+                         : line.cls === 'str' ? '#fffa7d'
+                         : line.cls === 'kw2' ? 'var(--color-secondary)'
+                         : 'rgba(255,255,255,0.8)',
                     fontStyle: line.cls === 'cm' ? 'italic' : 'normal',
                   }}>
                     {line.text}
@@ -187,19 +177,25 @@ export function Developers() {
               ))}
             </div>
 
-            {/* Corner accents */}
-            <div style={{ position: 'absolute', bottom: 0, right: 0, width: 24, height: 24, borderTop: '1px solid rgba(129,94,248,0.2)', borderLeft: '1px solid rgba(129,94,248,0.2)' }} />
+            {/* Yellow corner accent */}
+            <div style={{ position: 'absolute', bottom: 0, right: 0, width: 24, height: 24, borderTop: '2px solid var(--color-primary)', borderLeft: '2px solid var(--color-primary)' }} />
           </div>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .dev-content { grid-template-columns: 1fr !important; }
+        .dev-pill {
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        @media (max-width: 768px) {
-          .dev-content { grid-template-columns: 1fr !important; }
+        .dev-pill:hover {
+          background: #ffffff !important;
+          border-color: var(--color-text) !important;
+          color: var(--color-text) !important;
+          transform: translateY(-4px) scale(1.03);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.1);
         }
+        @media (max-width: 900px) { .dev-content { grid-template-columns: 1fr !important; } }
+        @media (max-width: 768px) { .dev-content { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>
   );

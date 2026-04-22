@@ -7,34 +7,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AUDIENCES = [
   {
-    icon: 'engineering',
-    title: 'Companion Product Teams',
-    color: 'var(--purple)',
-    bullets: [
-      'Replace hacky memory workarounds',
-      'Ship emotionally coherent AI companions',
-      'Scale to millions of unique relationships',
-    ],
-  },
-  {
-    icon: 'music_note',
-    title: 'Creator Ecosystems',
-    color: 'var(--teal)',
-    bullets: [
-      'Monetize personality at scale',
-      'Build interactive fan experiences',
-      'Protect creative IP with on-chain identity',
-    ],
-  },
-  {
     icon: 'devices',
-    title: 'Consumer Platforms',
-    color: 'var(--blue)',
-    bullets: [
-      'Integrate AI that remembers users',
-      'Reduce churn with personalized AI',
-      'Privacy-compliant by design',
-    ],
+    title: 'Consumer App Founders',
+    accentColor: 'var(--color-primary)',
+    desc: 'Focus on the experience. Skip rebuilding the core.',
+  },
+  {
+    icon: 'movie',
+    title: 'Media & IP Owners',
+    accentColor: 'var(--color-secondary)',
+    desc: 'Turn characters into interactive entities with memory and voice.',
+  },
+  {
+    icon: 'stars',
+    title: 'Creators & Influencers',
+    accentColor: 'var(--color-primary)',
+    desc: 'Deploy a version of yourself that scales — and earns.',
+  },
+  {
+    icon: 'science',
+    title: 'AI Researchers',
+    accentColor: 'var(--color-secondary)',
+    desc: 'Work with long-session memory and real interaction data.',
   },
 ];
 
@@ -60,7 +54,7 @@ export function WhoSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section" id="voice">
+    <section ref={sectionRef} className="section" id="voice" style={{ background: 'var(--color-bg)' }}>
       <div className="container">
         <div className="who-header" style={{ opacity: 0 }}>
           <div className="section-label">
@@ -69,7 +63,7 @@ export function WhoSection() {
           </div>
           <h2 className="section-title">
             <ScrambledText radius={120} duration={1.0} speed={0.45}>
-              One runtime. Infinite applications.
+              Who's already building on it.
             </ScrambledText>
           </h2>
         </div>
@@ -78,7 +72,7 @@ export function WhoSection() {
           {AUDIENCES.map((a, i) => (
             <div
               key={i}
-              className="card card-glow who-card"
+              className="who-card"
               style={{
                 opacity: 0,
                 cursor: 'default',
@@ -86,55 +80,62 @@ export function WhoSection() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 'var(--space-lg)',
+                background: '#ffffff',
+                border: '1px solid var(--border)',
+                transition: 'all 0.25s var(--ease-out)',
+                position: 'relative',
+                overflow: 'hidden',
               }}
               onMouseEnter={(e) => {
-                const iconEl = e.currentTarget.querySelector('.who-icon') as HTMLElement;
-                if (iconEl) iconEl.style.color = a.color;
+                e.currentTarget.style.borderColor = 'var(--color-text)';
+                e.currentTarget.style.boxShadow = '4px 4px 0px var(--color-primary)';
               }}
               onMouseLeave={(e) => {
-                const iconEl = e.currentTarget.querySelector('.who-icon') as HTMLElement;
-                if (iconEl) iconEl.style.color = 'var(--text-dim)';
+                e.currentTarget.style.borderColor = 'var(--border)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
+              {/* Top accent bar */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: a.accentColor }} />
+
               <span
                 className="material-symbols-outlined who-icon"
                 style={{
-                  fontSize: 32, color: 'var(--text-dim)',
-                  transition: 'color 0.3s ease',
+                  fontSize: 36, color: 'var(--color-text)',
                   display: 'block',
+                  marginTop: 4,
                 }}
               >
                 {a.icon}
               </span>
 
               <h3 style={{
-                fontSize: '1.15rem', fontWeight: 700,
-                fontFamily: 'var(--font-headline)',
-                lineHeight: 1.25,
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.45rem', fontWeight: 800,
+                lineHeight: 1.0,
+                letterSpacing: '-0.03em',
+                color: 'var(--color-text)',
               }}>
                 {a.title}
               </h3>
 
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-                {a.bullets.map((b, bi) => (
-                  <li key={bi} style={{
-                    display: 'flex', alignItems: 'flex-start', gap: 10,
-                    fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6,
-                  }}>
-                    <span style={{
-                      width: 5, height: 5, borderRadius: '50%',
-                      background: a.color, flexShrink: 0, marginTop: 7,
-                    }} />
-                    {b}
-                  </li>
-                ))}
-              </ul>
+              <p style={{
+                fontFamily: 'var(--font-body)', fontSize: '14px',
+                color: 'var(--color-text-muted)', lineHeight: 1.6,
+                fontWeight: 300, margin: 0,
+              }}>
+                {a.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
+        .who-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 1024px) {
+          .who-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
         @media (max-width: 768px) {
           .who-grid { grid-template-columns: 1fr !important; }
         }

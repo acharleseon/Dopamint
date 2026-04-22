@@ -21,7 +21,6 @@ export function CTASection() {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
       });
 
-      // Animate heading as a single unit — ScrambledText handles char splits
       gsap.fromTo('.cta-heading', { y: 30, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: '.cta-heading', start: 'top 85%' },
@@ -45,15 +44,21 @@ export function CTASection() {
     <section
       ref={sectionRef}
       className="section"
-      style={{ paddingBottom: 'var(--space-3xl)', position: 'relative', overflow: 'hidden' }}
+      style={{
+        paddingTop: 'var(--space-2xl)',
+        paddingBottom: 'var(--space-2xl)',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'var(--color-primary)',
+      }}
     >
-      {/* DotGrid background — starts after the gradient divider line */}
-      <div style={{ position: 'absolute', top: 'calc(var(--space-4xl) + 1px)', left: 0, right: 0, bottom: 0, zIndex: 0 }}>
+      {/* DotGrid background */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, opacity: 0.35 }}>
         <DotGrid
           dotSize={5}
           gap={22}
-          baseColor="rgba(129,94,248,0.18)"
-          activeColor="#815ef8"
+          baseColor="rgba(13,13,13,0.2)"
+          activeColor="#0d0d0d"
           proximity={130}
           shockRadius={220}
           shockStrength={4}
@@ -64,32 +69,41 @@ export function CTASection() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Top gradient border */}
-        <div style={{
-          height: 1, marginBottom: 'var(--space-4xl)',
-          background: 'linear-gradient(90deg, transparent, rgba(129,94,248,0.5), rgba(59,130,246,0.3), transparent)',
-        }} />
+        {/* Top border */}
+        <div style={{ height: 2, marginBottom: 'var(--space-lg)', background: 'rgba(13,13,13,0.2)' }} />
 
         <div style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto' }}>
-          <div className="cta-label section-label" style={{ justifyContent: 'center', opacity: 0 }}>
-            <span className="material-symbols-outlined">flag</span>
-            END OF SPEC
+          <div className="cta-label section-label" style={{ justifyContent: 'center', opacity: 0, background: 'var(--color-text)', color: '#ffffff', display: 'inline-flex' }}>
+            <span className="material-symbols-outlined">rocket_launch</span>
+            TESTNET
           </div>
 
           <h2
             className="cta-heading"
             style={{
-              fontSize: 'clamp(2rem, 5vw, 3.2rem)',
-              fontWeight: 900,
-              marginBottom: 'var(--space-xl)',
-              fontFamily: 'var(--font-headline)',
+              fontFamily: 'var(--font-title)',
+              fontSize: 'clamp(3rem, 5.5vw, 4.5rem)',
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              letterSpacing: '-0.02em',
+              lineHeight: 0.85,
+              marginBottom: 'var(--space-lg)',
+              color: 'var(--color-text)',
               opacity: 0,
             }}
           >
             <ScrambledText radius={130} duration={1.1} speed={0.45}>
-              Get in before it opens.
+              Testnet opening soon.
             </ScrambledText>
           </h2>
+
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: '1rem',
+            color: 'var(--color-text)', marginBottom: 'var(--space-2xl)',
+            lineHeight: 1.6, fontWeight: 500, maxWidth: 520, margin: '0 auto var(--space-2xl) auto'
+          }}>
+            Be among the first to build on Dopamint. Early builders get priority access, ecosystem visibility, and $DOPE rewards.
+          </p>
 
           {/* Tags */}
           <div className="cta-tags" style={{
@@ -101,10 +115,12 @@ export function CTASection() {
                 key={tag}
                 style={{
                   padding: '5px 14px',
-                  border: '1px solid var(--border)',
-                  fontFamily: 'var(--font-label)',
+                  border: '1px solid rgba(13,13,13,0.25)',
+                  background: 'rgba(13,13,13,0.06)',
+                  fontFamily: 'var(--font-body)',
                   fontSize: '11px',
-                  color: 'var(--text-secondary)',
+                  fontWeight: 600,
+                  color: 'var(--color-text)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                 }}
@@ -127,27 +143,34 @@ export function CTASection() {
               style={{
                 flex: 1,
                 padding: '14px 16px',
-                border: '1px solid var(--border)',
-                background: 'var(--bg-surface)',
-                color: 'var(--text-primary)',
-                fontFamily: 'var(--font-label)',
+                border: '2px solid var(--color-text)',
+                background: '#ffffff',
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-body)',
                 fontSize: '13px',
                 transition: 'border-color 0.2s ease',
+                outline: 'none',
               }}
-              onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--purple)'; }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+              onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-text)'; }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--color-text)'; }}
             />
-            <button className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
+            <button className="btn" style={{
+              background: 'var(--color-text)', color: '#ffffff',
+              border: '2px solid var(--color-text)',
+              whiteSpace: 'nowrap',
+              fontSize: '13px',
+              fontWeight: 700,
+            }}>
               Join the waitlist
             </button>
           </div>
 
           <p style={{
-            fontFamily: 'var(--font-label)', fontSize: '11px',
-            color: 'var(--text-dim)', marginTop: 'var(--space-md)',
-            letterSpacing: '0.05em',
+            fontFamily: 'var(--font-body)', fontSize: '11px',
+            color: 'rgba(13,13,13,0.55)', marginTop: 'var(--space-md)',
+            letterSpacing: '0.05em', fontWeight: 600
           }}>
-            No spam. Early access only.
+            Powered by $DOPE.
           </p>
         </div>
       </div>

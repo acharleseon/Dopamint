@@ -4,20 +4,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+import ScrambledText from './ScrambledText';
+
 const FLOW = [
-  { icon: 'mic', label: 'User voice' },
-  { icon: 'psychology', label: 'Interpretation' },
-  { icon: 'fingerprint', label: 'Identity' },
-  { icon: 'output', label: 'Output' },
-  { icon: 'settings_suggest', label: 'Adaptation' },
+  { icon: 'mic', label: 'LIVE VOICE' },
+  { icon: 'psychology', label: 'INTERPRETATION' },
+  { icon: 'fingerprint', label: 'IDENTITY' },
+  { icon: 'output', label: 'OUTPUT' },
+  { icon: 'settings_suggest', label: 'ADAPTATION' },
 ];
 
 const STAGES = [
-  { id: '01', icon: 'record_voice_over', title: 'Turn detection' },
-  { id: '02', icon: 'security', title: 'Safety layer' },
-  { id: '03', icon: 'database', title: 'Memory retrieval' },
-  { id: '04', icon: 'badge', title: 'Identity layer' },
-  { id: '05', icon: 'stream', title: 'Voice & avatar stream' },
+  { id: '01', icon: 'record_voice_over', title: 'Turn detection', desc: 'Reads the rhythm of conversation. Knows when to speak, when to wait.' },
+  { id: '02', icon: 'security', title: 'Safety layer', desc: 'Aligns behavior in real time without interrupting the experience.' },
+  { id: '03', icon: 'database', title: 'Memory retrieval', desc: 'Surfaces what matters from past sessions, instantly, in context.' },
+  { id: '04', icon: 'badge', title: 'Identity layer', desc: 'Holds the companion\'s personality stable across every session.' },
+  { id: '05', icon: 'stream', title: 'Voice & avatar stream', desc: 'Syncs audio, expression, and motion into one seamless output.' },
 ];
 
 export function Pipeline() {
@@ -48,7 +50,7 @@ export function Pipeline() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section">
+    <section ref={sectionRef} className="section" id="pipeline" style={{ background: 'var(--color-primary)' }}>
       <div className="container">
         {/* Header */}
         <div
@@ -57,20 +59,23 @@ export function Pipeline() {
             display: 'flex', alignItems: 'center', gap: 'var(--space-sm)',
             marginBottom: 'var(--space-xl)',
             paddingBottom: 'var(--space-md)',
-            borderBottom: '1px solid var(--border)',
+            borderBottom: '2px solid var(--color-text)',
             position: 'relative',
             opacity: 0,
           }}
         >
-          <span className="section-label" style={{ marginBottom: 0 }}>
+          <span className="section-label" style={{ marginBottom: 0, color: 'var(--color-primary)', background: 'var(--color-text)' }}>
             <span className="material-symbols-outlined">account_tree</span>
-            RUNTIME ARCHITECTURE / PIPELINE
+            RUNTIME ARCHITECTURE
           </span>
-          <div style={{
-            position: 'absolute', right: 0, bottom: 0,
-            width: 48, height: 1, background: 'var(--purple)',
-          }} />
+          <div style={{ position: 'absolute', right: 0, bottom: -2, width: 48, height: 4, background: 'var(--color-text)' }} />
         </div>
+
+        <h2 className="section-title" style={{ color: 'var(--color-text)', marginBottom: 'var(--space-2xl)' }}>
+          <ScrambledText radius={120} duration={1.0} speed={0.45}>
+            How it works under the hood.
+          </ScrambledText>
+        </h2>
 
         {/* Flow Diagram */}
         <div
@@ -82,17 +87,17 @@ export function Pipeline() {
             gap: 'var(--space-md)',
             justifyContent: 'center',
             padding: 'var(--space-xl)',
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border)',
+            background: '#ffffff',
+            border: '2px solid var(--color-text)',
             marginBottom: 'var(--space-xl)',
             position: 'relative',
             overflow: 'hidden',
           }}
         >
-          {/* Subtle vertical line grid pattern */}
+          {/* Subtle grid pattern */}
           <div style={{
             position: 'absolute', inset: 0,
-            backgroundImage: 'linear-gradient(90deg, transparent 49px, rgba(129,94,248,0.04) 50px, transparent 51px)',
+            backgroundImage: 'linear-gradient(90deg, transparent 49px, rgba(13,13,13,0.05) 50px, transparent 51px)',
             backgroundSize: '80px 100%',
             pointerEvents: 'none',
           }} />
@@ -105,20 +110,22 @@ export function Pipeline() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 6,
-                  padding: '6px 14px',
+                  padding: '8px 16px',
                   border: '1px solid var(--border)',
-                  background: 'var(--bg)',
-                  fontFamily: 'var(--font-label)',
+                  background: 'var(--color-primary)',
+                  fontFamily: 'var(--font-body)',
                   fontSize: '13px',
-                  color: 'var(--text-secondary)',
+                  fontWeight: 500,
+                  color: 'var(--color-text)',
                   opacity: 0,
+                  transition: 'all 0.2s ease',
                 }}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 14 }}>{item.icon}</span>
+                <span className="material-symbols-outlined" style={{ fontSize: 14, color: 'var(--color-text)' }}>{item.icon}</span>
                 {item.label}
               </span>
               {i < FLOW.length - 1 && (
-                <span className="flow-arrow material-symbols-outlined" style={{ fontSize: 18, color: 'var(--purple)' }}>
+                <span className="flow-arrow material-symbols-outlined" style={{ fontSize: 18, color: 'var(--color-text)' }}>
                   arrow_forward
                 </span>
               )}
@@ -132,9 +139,9 @@ export function Pipeline() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(5, 1fr)',
-            border: '1px solid var(--border)',
+            border: '2px solid var(--color-text)',
             overflow: 'hidden',
-            background: 'var(--bg-surface-low)',
+            background: '#ffffff',
           }}
         >
           {STAGES.map((stage, i) => {
@@ -147,33 +154,50 @@ export function Pipeline() {
                 onMouseLeave={() => setHoveredId(null)}
                 style={{
                   padding: 'var(--space-xl)',
-                  borderRight: i < STAGES.length - 1 ? '1px solid var(--border)' : 'none',
-                  background: isHovered ? 'rgba(129,94,248,0.06)' : 'transparent',
+                  borderRight: i < STAGES.length - 1 ? '1px solid var(--color-text)' : 'none',
+                  background: isHovered ? 'var(--color-text)' : 'transparent',
                   cursor: 'default',
-                  transition: 'background 0.25s ease',
+                  transition: 'background 0.2s ease',
                   opacity: 0,
                 }}
               >
                 <div style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  fontFamily: 'var(--font-label)', fontSize: '11px',
-                  color: isHovered ? 'var(--purple)' : 'var(--text-dim)',
+                  fontFamily: 'var(--font-body)', fontSize: '11px',
+                  color: isHovered ? 'var(--color-primary)' : 'rgba(13,13,13,0.5)',
                   marginBottom: 'var(--space-md)',
-                  transition: 'color 0.25s ease',
+                  transition: 'color 0.2s ease',
+                  fontWeight: 600,
+                  letterSpacing: '0.05em',
                 }}>
                   {stage.id}
-                  <span className="material-symbols-outlined" style={{ fontSize: 15, opacity: isHovered ? 1 : 0.35, transition: 'opacity 0.25s ease' }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: 15, opacity: isHovered ? 1 : 0.4, transition: 'opacity 0.2s ease' }}>
                     {stage.icon}
                   </span>
                 </div>
                 <h4 style={{
-                  fontSize: '1rem', fontWeight: 700,
-                  color: isHovered ? 'var(--purple-light)' : 'var(--text-primary)',
-                  fontFamily: 'var(--font-headline)',
-                  transition: 'color 0.25s ease',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.1rem', fontWeight: 800,
+                  color: isHovered ? 'var(--color-primary)' : 'var(--color-text)',
+                  transition: 'color 0.2s ease',
+                  textTransform: 'none',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.1,
+                  marginBottom: 'var(--space-sm)'
                 }}>
                   {stage.title}
                 </h4>
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '13px',
+                  color: isHovered ? 'rgba(255,231,1,0.8)' : 'var(--color-text-muted)',
+                  lineHeight: 1.5,
+                  margin: 0,
+                  fontWeight: 300,
+                  transition: 'color 0.2s ease'
+                }}>
+                  {stage.desc}
+                </p>
               </div>
             );
           })}
@@ -181,9 +205,10 @@ export function Pipeline() {
       </div>
 
       <style>{`
+        .pipeline-section h4 { text-transform: none; }
         @media (max-width: 900px) {
           .stages-grid { grid-template-columns: repeat(3, 1fr) !important; }
-          .stage-cell { border-bottom: 1px solid var(--border) !important; }
+          .stage-cell { border-bottom: 1px solid var(--color-text) !important; }
         }
         @media (max-width: 600px) {
           .stages-grid { grid-template-columns: 1fr 1fr !important; }

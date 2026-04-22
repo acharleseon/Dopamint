@@ -7,49 +7,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TIERS = [
   {
-    name: 'Starter',
+    name: 'BUILD',
     price: '$0',
     period: '/mo',
-    cta: 'Start free',
+    cta: 'Start Building →',
     popular: false,
     features: [
-      '1,000 sessions/month',
-      '128MB memory per agent',
-      'Community support',
-      'Shared infrastructure',
-      'Basic analytics',
+      'Usage-based access.',
+      'No seat fees.',
+      'Public testnet.',
     ],
   },
   {
-    name: 'Production',
+    name: 'SCALE',
     price: '$249',
     period: '/mo',
-    cta: 'Start building',
+    cta: 'Talk to Sales →',
     popular: true,
     features: [
-      '50,000 sessions/month',
-      '2GB memory per agent',
-      'Priority support (24h)',
-      'Dedicated runtime',
-      'Advanced analytics',
-      'Custom voice models',
-      'Webhook integrations',
+      'Volume pricing.',
+      'SLA guarantees.',
+      'Priority routing.',
     ],
   },
   {
-    name: 'Enterprise',
+    name: 'ENTERPRISE',
     price: 'Custom',
     period: '',
-    cta: 'Contact us',
+    cta: 'Contact Us →',
     popular: false,
     features: [
-      'Unlimited sessions',
-      'Unlimited memory',
-      'Dedicated account manager',
-      'On-premise deployment',
-      'SLA guarantees',
-      'Custom integrations',
-      'SOC 2 compliance',
+      'Dedicated infrastructure.',
+      'Custom pricing.',
+      'Compliance review.',
     ],
   },
 ];
@@ -76,16 +66,16 @@ export function Pricing() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section" id="pricing">
+    <section ref={sectionRef} className="section" id="pricing" style={{ background: 'var(--color-text)' }}>
       <div className="container">
-        <div className="price-header" style={{ opacity: 0, textAlign: 'center' }}>
-          <div className="section-label" style={{ justifyContent: 'center' }}>
+        <div className="price-header" style={{ opacity: 0 }}>
+          <div className="section-label">
             <span className="material-symbols-outlined">payments</span>
             PRICING
           </div>
-          <h2 className="section-title" style={{ margin: '0 auto var(--space-2xl)' }}>
+          <h2 className="section-title" style={{ color: '#ffffff' }}>
             <ScrambledText radius={120} duration={1.0} speed={0.45}>
-              Scale from prototype to planet.
+              Start simple. Scale when it works.
             </ScrambledText>
           </h2>
         </div>
@@ -94,45 +84,39 @@ export function Pricing() {
           {TIERS.map((tier) => (
             <div
               key={tier.name}
-              className="card price-card iridescent-glow"
+              className="price-card"
               style={{
                 opacity: 0,
                 padding: 'var(--space-2xl) var(--space-xl)',
-                borderColor: tier.popular ? 'rgba(129, 94, 248, 0.4)' : 'var(--border)',
-                background: tier.popular ? 'rgba(129, 94, 248, 0.03)' : 'var(--bg-surface)',
+                border: tier.popular ? '2px solid var(--color-primary)' : '1px solid rgba(255,255,255,0.12)',
+                background: tier.popular ? 'var(--color-primary)' : 'rgba(255,255,255,0.03)',
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
+                (e.currentTarget as HTMLElement).style.boxShadow = tier.popular
+                  ? 'var(--yellow-glow)'
+                  : '0 8px 32px rgba(255,231,1,0.08)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = 'none';
+                (e.currentTarget as HTMLElement).style.boxShadow = 'none';
               }}
             >
-              {/* Popular bar */}
-              {tier.popular && (
-                <div style={{
-                  position: 'absolute', top: -1, left: 0, right: 0, height: 2,
-                  background: 'linear-gradient(90deg, var(--purple), var(--teal), var(--blue))',
-                }} />
-              )}
-
-              {/* Ghost corner icon */}
-              <span
-                className="material-symbols-outlined"
-                style={{
-                  position: 'absolute', top: 'var(--space-lg)', right: 'var(--space-lg)',
-                  fontSize: 40, opacity: 0.04,
-                }}
-              >
-                {tier.popular ? 'diamond' : 'hexagon'}
-              </span>
-
               {/* Popular badge */}
               {tier.popular && (
                 <span style={{
                   display: 'inline-block',
-                  fontFamily: 'var(--font-label)', fontSize: '10px',
+                  fontFamily: 'var(--font-body)', fontSize: '10px',
                   textTransform: 'uppercase', letterSpacing: '0.15em',
-                  color: 'var(--purple)', marginBottom: 'var(--space-md)',
-                  padding: '3px 8px',
-                  border: '1px solid rgba(129,94,248,0.3)',
+                  color: 'var(--color-text)', fontWeight: 700,
+                  marginBottom: 'var(--space-md)',
+                  padding: '3px 10px',
+                  background: 'var(--color-text)',
+                  color: 'var(--color-primary)',
                   alignSelf: 'flex-start',
                 }}>
                   Most Popular
@@ -141,44 +125,52 @@ export function Pricing() {
 
               {/* Tier name */}
               <h3 style={{
-                fontFamily: 'var(--font-headline)', fontSize: '1rem',
-                fontWeight: 600, color: 'var(--text-secondary)',
+                fontFamily: 'var(--font-heading)', fontSize: '1.15rem',
+                fontWeight: 800, color: tier.popular ? 'var(--color-text)' : '#ffffff',
                 marginBottom: 'var(--space-sm)',
-                textTransform: 'uppercase', letterSpacing: '0.08em',
+                letterSpacing: '-0.025em',
+                lineHeight: 1,
               }}>
                 {tier.name}
               </h3>
 
               {/* Price */}
               <div style={{
-                fontFamily: 'var(--font-headline)', fontSize: '3rem',
+                fontFamily: 'var(--font-heading)', fontSize: '3.5rem',
                 fontWeight: 900, lineHeight: 1,
                 marginBottom: 'var(--space-xl)',
+                color: tier.popular ? 'var(--color-text)' : '#ffffff',
+                letterSpacing: '-0.04em',
                 display: 'flex', alignItems: 'baseline', gap: 4,
               }}>
                 {tier.price}
-                <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: 400 }}>{tier.period}</span>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '14px', fontWeight: 400, opacity: 0.6 }}>{tier.period}</span>
               </div>
 
               {/* CTA */}
               <button
                 className={tier.popular ? 'btn btn-primary' : 'btn btn-outline'}
-                style={{ width: '100%', marginBottom: 'var(--space-xl)', justifyContent: 'center' }}
+                style={{
+                  width: '100%', marginBottom: 'var(--space-xl)', justifyContent: 'center',
+                  ...(tier.popular ? { background: 'var(--color-text)', color: 'var(--color-primary)', borderColor: 'var(--color-text)' } : { borderColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }),
+                }}
               >
                 {tier.cta}
               </button>
 
               {/* Features */}
-              <div style={{ borderTop: '1px solid var(--border)', paddingTop: 'var(--space-lg)', flex: 1 }}>
+              <div style={{ borderTop: `1px solid ${tier.popular ? 'rgba(13,13,13,0.2)' : 'rgba(255,255,255,0.1)'}`, paddingTop: 'var(--space-lg)', flex: 1 }}>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                   {tier.features.map((f, fi) => (
                     <li key={fi} style={{
                       display: 'flex', alignItems: 'center', gap: 10,
-                      fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.5,
+                      fontFamily: 'var(--font-body)', fontSize: '14px',
+                      color: tier.popular ? 'var(--color-text)' : 'rgba(255,255,255,0.7)',
+                      lineHeight: 1.5, fontWeight: 300,
                     }}>
                       <span style={{
-                        width: 5, height: 5, borderRadius: '50%',
-                        background: tier.popular ? 'var(--purple)' : 'var(--text-dim)',
+                        width: 6, height: 6,
+                        background: tier.popular ? 'var(--color-text)' : 'var(--color-primary)',
                         flexShrink: 0,
                       }} />
                       {f}
@@ -193,15 +185,8 @@ export function Pricing() {
 
       <style>{`
         @media (max-width: 900px) {
-          .price-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .price-grid .price-card:last-child {
-            grid-column: 1 / -1;
-            max-width: 420px;
-            margin: 0 auto;
-            width: 100%;
-          }
+          .price-grid { grid-template-columns: 1fr 1fr !important; }
+          .price-grid .price-card:last-child { grid-column: 1 / -1; max-width: 420px; margin: 0 auto; width: 100%; }
         }
         @media (max-width: 640px) {
           .price-grid { grid-template-columns: 1fr !important; max-width: 420px; margin: 0 auto; }
