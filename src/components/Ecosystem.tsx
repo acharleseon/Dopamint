@@ -7,12 +7,14 @@ import HoverFlipCard from './HoverFlipCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const BASE = import.meta.env.BASE_URL;
+
 const DOPETWIN_FEATURES = [
-  { title: 'Shannon Elizabeth', icon: 'public', img: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=400&auto=format' },
-  { title: 'Blac Chyna', icon: 'schedule', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format' },
-  { title: 'Bhad Bhabie', icon: 'lock', img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=400&auto=format' },
-  { title: 'Cardi B', icon: 'payments', img: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=400&auto=format' },
-  { title: 'Iggy Azalea', icon: 'insights', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format' },
+  { title: 'Shannon Elizabeth', icon: 'public', img: `${BASE}dopekin_avatars/ShannonElizabeth.png`, hoverImg: `${BASE}dopekin_avatars/ShannonElizabeth_Hover.png` },
+  { title: 'Blac Chyna', icon: 'schedule', img: `${BASE}dopekin_avatars/BlacChyna.png`, hoverImg: `${BASE}dopekin_avatars/BlacChyna_Hover.png` },
+  { title: 'Bhad Bhabie', icon: 'lock', img: `${BASE}dopekin_avatars/BhadBhabie.png`, hoverImg: `${BASE}dopekin_avatars/BhadBhabie_Hover.png` },
+  { title: 'Cardi B', icon: 'payments', img: `${BASE}dopekin_avatars/CardiB.png`, hoverImg: `${BASE}dopekin_avatars/CardiB_Hover.png` },
+  { title: 'Iggy Azalea', icon: 'insights', img: `${BASE}dopekin_avatars/IggyAzalea.png`, hoverImg: `${BASE}dopekin_avatars/IggyAzalea_Hover.png` },
 ];
 
 export function Ecosystem() {
@@ -53,24 +55,27 @@ export function Ecosystem() {
 
         {/* Products Container */}
         <div style={{ marginTop: 'var(--space-lg)' }}>
-          <div className="eco-outer-box" style={{ opacity: 1 }}>
+          {/* OVERALL HEADER */}
+          <div style={{ marginBottom: 'var(--space-xl)', padding: '0 var(--space-md)' }}>
+            <div className="eco-col-header">
+              <div
+                className="eco-icon-box"
+                style={{ borderColor: 'var(--color-primary)', background: 'var(--color-primary)' }}
+              >
+                <span className="material-symbols-outlined" style={{ color: 'var(--color-text)', fontSize: 20 }}>smart_toy</span>
+              </div>
+              <div>
+                <h3 className="eco-product-name">DopeKin</h3>
+                <p className="eco-product-subtitle" style={{ color: 'var(--color-text-muted)' }}>Emotional and Revenue Layer of AI Companions</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 1: For Companion Seekers */}
+          <div className="eco-outer-box" style={{ opacity: 1, marginBottom: 'var(--space-2xl)' }}>
             <div className="eco-grid">
-
-              {/* DOPEkin Col */}
               <div className="eco-col eco-card" style={{ opacity: 0 }}>
-                <div className="eco-col-header">
-                  <div
-                    className="eco-icon-box"
-                    style={{ borderColor: 'var(--color-primary)', background: 'var(--color-primary)' }}
-                  >
-                    <span className="material-symbols-outlined" style={{ color: 'var(--color-text)', fontSize: 20 }}>smart_toy</span>
-                  </div>
-                  <div>
-                    <h3 className="eco-product-name">DopeKin</h3>
-                    <p className="eco-product-subtitle" style={{ color: 'var(--color-text-muted)' }}>Emotional and Revenue Layer of AI Companions</p>
-                  </div>
-                </div>
-
+                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>For Companion Seekers</h4>
                 <div className="eco-image-wrap">
                   <div className="eco-image-area" style={{ overflow: 'visible', background: 'transparent', height: '420px' }}>
                     <CoverflowGallery />
@@ -82,15 +87,20 @@ export function Ecosystem() {
                     Meet AI companions that remember who you are, pick up where you left off,
                     and grow more present with every conversation.
                   </p>
-                  <button className="btn btn-primary eco-cta">
+                  <button className="btn eco-cta" style={{ background: '#111', color: '#fff', border: '1px solid #111' }}>
                     EXPLORE
                     <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* DOPEtwin Col */}
+          {/* Section 2: For Creator Revenue */}
+          <div className="eco-outer-box" style={{ opacity: 1 }}>
+            <div className="eco-grid">
               <div className="eco-col eco-card" style={{ opacity: 0 }}>
+                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>For Creator Revenue</h4>
                 <div className="eco-image-wrap">
                   <div className="eco-image-area" style={{ 
                     overflow: 'visible', 
@@ -135,15 +145,33 @@ export function Ecosystem() {
                             </div>
                           }
                           secondContent={
-                            <div style={{
-                              width: '100%', height: '100%',
-                              display: 'flex', flexDirection: 'column',
-                              alignItems: 'center', justifyContent: 'center',
-                              background: 'var(--color-primary)',
-                              gap: 6, padding: 8,
-                            }}>
-                              <span className="material-symbols-outlined" style={{ fontSize: 20, color: 'var(--color-text)' }}>{feat.icon}</span>
-                              <p style={{ color: 'var(--color-text)', fontWeight: 800, fontSize: '10px', textAlign: 'center', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', lineHeight: 1.1 }}>{feat.title}</p>
+                            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                              <img
+                                src={feat.hoverImg}
+                                alt={feat.title}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                              />
+                              <div style={{ 
+                                position: 'absolute', 
+                                bottom: 0, left: 0, right: 0, 
+                                height: '80%', 
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)',
+                                pointerEvents: 'none'
+                              }} />
+                              <div style={{ 
+                                position: 'absolute',
+                                bottom: 0, left: 0, right: 0,
+                                padding: '12px 6px',
+                                fontFamily: 'var(--font-heading)', 
+                                fontSize: '10px', 
+                                fontWeight: 800,
+                                textTransform: 'uppercase',
+                                color: '#ffffff',
+                                textAlign: 'center',
+                                textShadow: '0px 2px 4px rgba(0,0,0,0.8)'
+                              }}>
+                                {feat.title}
+                              </div>
                             </div>
                           }
                         />
@@ -163,7 +191,6 @@ export function Ecosystem() {
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
