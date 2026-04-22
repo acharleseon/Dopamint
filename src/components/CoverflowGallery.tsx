@@ -4,27 +4,27 @@ import { motion } from 'framer-motion';
 const CARDS = [
   {
     id: 0,
-    img: './dopekin_avatars/seeker_1.png',
+    img: './dopekin_avatars/avatar1.jpg',
     text: "Call In—I'll keep it smooth, witty, and dangerous.",
   },
   {
     id: 1,
-    img: './dopekin_avatars/seeker_2.png',
+    img: './dopekin_avatars/avatar2.jpg',
     text: "He doesn't need thanks—he needs you to keep moving.",
   },
   {
     id: 2,
-    img: './dopekin_avatars/seeker_3.png',
+    img: './dopekin_avatars/avatar3.jpg',
     text: 'Successful cybersecurity consultant. Hacker.',
   },
   {
     id: 3,
-    img: './dopekin_avatars/seeker_4.png',
+    img: './dopekin_avatars/avatar4.jpg',
     text: 'Your personal fitness and mentality coach.',
   },
   {
     id: 4,
-    img: './dopekin_avatars/seeker_5.png',
+    img: './dopekin_avatars/avatar5.jpg',
     text: 'Late night philosopher and deep thinker.',
   },
 ];
