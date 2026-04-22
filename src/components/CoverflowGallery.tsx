@@ -4,27 +4,27 @@ import { motion } from 'framer-motion';
 const CARDS = [
   {
     id: 0,
-    img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format',
+    img: './dopekin_avatars/seeker_1.png',
     text: "Call In—I'll keep it smooth, witty, and dangerous.",
   },
   {
     id: 1,
-    img: 'https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=400&auto=format',
+    img: './dopekin_avatars/seeker_2.png',
     text: "He doesn't need thanks—he needs you to keep moving.",
   },
   {
     id: 2,
-    img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format',
+    img: './dopekin_avatars/seeker_3.png',
     text: 'Successful cybersecurity consultant. Hacker.',
   },
   {
     id: 3,
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format',
+    img: './dopekin_avatars/seeker_4.png',
     text: 'Your personal fitness and mentality coach.',
   },
   {
     id: 4,
-    img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format',
+    img: './dopekin_avatars/seeker_5.png',
     text: 'Late night philosopher and deep thinker.',
   },
 ];
